@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'primeng/api';
-import { ContentService } from 'src/app/demo/service/content.service';
+import { AppConfig } from 'src/app/configurable-appliance/interface/content.interface';
+import { ContentService } from 'src/app/configurable-appliance/service/content.service';
 
 @Component({
     selector: 'app-global-config',
@@ -15,21 +16,9 @@ export class GlobalConfigComponent implements OnInit {
     messages!: Message[];
     value: boolean = false;
     addAuthoringForm: FormGroup;
-
-    languageList = [
-        { label: 'Hindi', value: 'hi' },
-        { label: 'English', value: 'en' },
-        { label: 'Kannada', value: 'kn' },
-        { label: 'Marathi', value: 'ma' },
-    ];
-    modesList = [
-        { label: 'Simple Mode', value: 'simpleMode' },
-        { label: 'Story Mode', value: 'storyMode' },
-    ];
-    enableAuthoringList: any[] = [
-        { name: 'Yes', value: true },
-        { name: 'No', value: false },
-    ];
+    languageList = AppConfig.languages;
+    modesList = AppConfig.modesList;
+    enableAuthoringList = AppConfig.enableAuthoringList;
 
     constructor(
         public formBuilder: FormBuilder,

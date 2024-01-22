@@ -3,7 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Message } from 'primeng/api';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { ContentService } from 'src/app/demo/service/content.service';
+import { AppConfig } from 'src/app/configurable-appliance/interface/content.interface';
+import { ContentService } from 'src/app/configurable-appliance/service/content.service';
 
 @Component({
     selector: 'app-add-or-edit-story',
@@ -19,18 +20,9 @@ export class AddOrEditStoryComponent {
     messages: Message[];
     CurrentChannelName: string;
     difficulty: string;
-    difficultyLvlList = [
-        { label: 'LOW', value: 'low' },
-        { label: 'MEDIUM', value: 'medium' },
-        { label: 'DIFFICULT', value: 'difficult' },
-    ];
-    languageList = [
-        { label: 'Hindi', value: 'hi' },
-        { label: 'English', value: 'en' },
-        { label: 'Tamil', value: 'ta' },
-        { label: 'Kannada', value: 'kn' },
-    ];
-    contentTypeList = [{ label: 'Word', value: 'word' }];
+    difficultyLvlList = AppConfig.difficultyLvlList
+    languageList = AppConfig.languages;
+    contentTypeList = AppConfig.contentTypeList;
 
     constructor(
         public formBuilder: FormBuilder,
@@ -47,7 +39,12 @@ export class AddOrEditStoryComponent {
 
     ngOnInit() {
         this.initializeAddForm();
-        this.initialzeEditForm();
+        if(this.mode === 'Edit'){
+            this.initialzeEditForm();
+        }
+        this.addStoryForm.patchValue({
+            category: this.contentTypeList[0].value 
+          });
     }
 
 
@@ -80,7 +77,7 @@ export class AddOrEditStoryComponent {
         this.ref.close();
     }
 
-    saveOrg(mode) {
+    addOrEditStory(mode) {
         if (mode === 'Add') {
         if (this.addStoryForm.invalid) {
           this.messages = [

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
-import { ContentService } from 'src/app/demo/service/content.service';
+import { ContentService } from 'src/app/configurable-appliance/service/content.service';
 import { MessageService, ConfirmationService, Message } from 'primeng/api';
 import { AddWordSentencesComponent } from './add-word-sentences/add-word-sentences.component';
 

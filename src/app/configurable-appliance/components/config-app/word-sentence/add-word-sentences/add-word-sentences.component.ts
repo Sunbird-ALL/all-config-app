@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ContentService } from 'src/app/demo/service/content.service';
+import { AppConfig } from 'src/app/configurable-appliance/interface/content.interface';
+import { ContentService } from 'src/app/configurable-appliance/service/content.service';
 
 @Component({
   selector: 'app-add-word-sentences',
@@ -17,19 +18,9 @@ export class AddWordSentencesComponent implements OnInit {
   editWordAndSentenceForm: FormGroup;
   messages: Message[];
   difficulty: string;
-  difficultyLvlList = [
-      { label: 'LOW', value: 'low' },
-      { label: 'MEDIUM', value: 'medium' },
-      { label: 'DIFFICULT', value: 'difficult' },
-  ];
-  languageList = [
-      { label: 'Hindi', value: 'hi' },
-      { label: 'English', value: 'en' },
-      { label: 'Tamil', value: 'ta' },
-      { label: 'Kannada', value: 'kn' },
-  ];
-
-  contentTypeList = [{ label: 'Word', value: 'word' },{ label: 'Sentence', value: 'sentence' }];
+  difficultyLvlList = AppConfig.difficultyLvlList;
+  languageList = AppConfig.languages;
+  contentTypeList = AppConfig.contentTypeList;
 
 
   constructor(
@@ -67,10 +58,6 @@ export class AddWordSentencesComponent implements OnInit {
         contentType: [this.wordAndSentenceData?.contentType, Validators.required],
         contentText: [this.wordAndSentenceData?.contentSourceData[0].text || '', Validators.required],
         contentAudio: [''],
-        // language: [this.wordAndSentenceData?.language, Validators.required],
-        // text: [this.wordAndSentenceData?.text, Validators.required],
-        // publisher: [this.wordAndSentenceData?.publisher, Validators.required],
-        // name: [this.wordAndSentenceData?.name, Validators.required],
       });
   }
 
@@ -82,7 +69,7 @@ export class AddWordSentencesComponent implements OnInit {
       if (mode === 'Add') {
           if (this.addWordAndSentenceForm.invalid) {
               this.messages = [
-                  // { severity: 'error', summary: this.i18nextPipe.transform('ADD_ORGANIZATION_BLANK_FIELD_MSG') }
+                  { severity: 'error', summary: 'Form Field Required' }
               ];
               return;
           }
@@ -112,20 +99,19 @@ export class AddWordSentencesComponent implements OnInit {
               },
               (error: any) => {
                   this.messages = [
-                      // { severity: 'error', summary: this.i18nextPipe.transform('ADD_ORGANIZATION_ALREADY_EXIT') }
+                      { severity: 'error', summary: error}
                   ];
               }
           );
       } else if (mode === 'Edit') {
           if (this.editWordAndSentenceForm.invalid) {
               this.messages = [
-                  // { severity: 'error', summary: this.i18nextPipe.transform('ADD_ORGANIZATION_BLANK_FIELD_MSG') }
+                 { severity: 'error', summary: 'Form Field Required' }
               ];
               return;
           }
           const body = {
             collectionId: "",
-            // publisher: this.editWordAndSentenceForm.value.publisher,
             name: this.wordAndSentenceData.name,
             contentType: this.wordAndSentenceData.contentType,
             image: " ",
@@ -147,7 +133,7 @@ export class AddWordSentencesComponent implements OnInit {
               },
               (error: any) => {
                   this.messages = [
-                      // { severity: 'error', summary: this.i18nextPipe.transform('ADD_ORGANIZATION_ALREADY_EXIT') }
+                      { severity: 'error', summary: error }
                   ];
               }
           );
@@ -164,7 +150,6 @@ export class AddWordSentencesComponent implements OnInit {
     }
         const body = {
             collectionId: "",
-            // publisher: this.editWordAndSentenceForm.value.publisher,
             name: this.wordAndSentenceData.name,
             contentType: this.editWordAndSentenceForm.value.contentType,
             image: " ",

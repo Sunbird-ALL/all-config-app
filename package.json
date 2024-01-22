@@ -1,7 +1,7 @@
 {
     "name": "content-service-ui",
-    "version": "16.0.0",
-    "license": "PrimeNG Commercial",
+    "version": "",
+    "license": "",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",

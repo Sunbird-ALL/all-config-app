@@ -5,8 +5,9 @@ import { Message, MessageService } from 'primeng/api';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { FileUpload } from 'primeng/fileupload';
 import { Subscription } from 'rxjs';
-import { AudioService } from 'src/app/demo/service/audio.service';
-import { ContentService } from 'src/app/demo/service/content.service';
+import { AppConfig } from 'src/app/configurable-appliance/interface/content.interface';
+import { AudioService } from 'src/app/configurable-appliance/service/audio.service';
+import { ContentService } from 'src/app/configurable-appliance/service/content.service';
 
 @Component({
     selector: 'app-add-sentence-for-story',
@@ -21,9 +22,8 @@ export class AddSentenceForStoryComponent implements OnInit {
     storyDetailData: any;
     ContentForm: FormGroup;
     editContentForm: FormGroup;
-
     messages!: Message[];
-    contentTypeList = [{ label: 'Word', value: 'word' },{ label: 'Sentence', value: 'sentence' }];
+    contentTypeList = AppConfig.contentTypeList;
     uploadedImage: any;
 
     private audioSubscription: Subscription | undefined;

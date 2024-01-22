@@ -3,7 +3,7 @@ import { Table } from 'primeng/table';
 import { MessageService, ConfirmationService, Message } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AddOrEditStoryComponent } from './add-or-edit-story/add-or-edit-story.component';
-import { ContentService } from 'src/app/demo/service/content.service';
+import { ContentService } from 'src/app/configurable-appliance/service/content.service';
 import { AddSentenceForStoryComponent } from './add-sentence-for-story/add-sentence-for-story.component';
 
 @Component({
