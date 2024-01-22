@@ -1,0 +1,21 @@
+input.ng-touched.ng-invalid{
+    border: 1px solid red;
+}
+textarea.ng-touched.ng-invalid{
+    border: 1px solid red;
+}
+small{
+    color: red;
+}
+.p-button-container{
+    float:right;
+}
+#disabled-input{
+    background-color: #f0f0f0;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.btn-width {
+    padding-left: 30px;
+}
