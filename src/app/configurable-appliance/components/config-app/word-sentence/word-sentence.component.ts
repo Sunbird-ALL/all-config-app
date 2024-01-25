@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { ContentService } from 'src/app/configurable-appliance/service/content.service';
 import { MessageService, ConfirmationService, Message } from 'primeng/api';
 import { AddWordSentencesComponent } from './add-word-sentences/add-word-sentences.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-word-sentence',
@@ -11,23 +12,39 @@ import { AddWordSentencesComponent } from './add-word-sentences/add-word-sentenc
     styleUrls: ['./word-sentence.component.scss'],
     providers: [MessageService, ConfirmationService],
 })
-export class WordSentenceComponent {
+export class WordSentenceComponent implements AfterViewInit {
     editDialog: boolean;
     wordAndSentenceData: any[] = [];
     langData: any[] = [];
     loading: boolean = true;
     messages: Message[] = [];
+    collectionId: string;
+    @ViewChild('dt2') dataTable: Table;
+    @ViewChild('collectionIdFilter') collectionIdFilter: any;
+
 
     constructor(
         private contentService: ContentService,
         public ref: DynamicDialogRef,
         public dialogService: DialogService,
         private confirmationService: ConfirmationService,
+        private route: ActivatedRoute
 
     ) {}
 
     ngOnInit() {
         this.getStoriesList();
+        this.route.queryParams.subscribe(params => {
+            this.collectionId = params['collectionId'];
+        });
+    }
+
+    ngAfterViewInit() {
+        if (this.collectionId) {
+            setTimeout(() => {
+                this.dataTable.filter(this.collectionId, 'collectionId', 'contains');
+            });
+        }
     }
 
     getStoriesList() {

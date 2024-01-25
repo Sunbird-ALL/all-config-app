@@ -9,7 +9,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
             {
                 path: '',
                 pathMatch: 'full',
-                redirectTo: 'content/global-config/list'
+                redirectTo: 'content/story/list'
               }, 
             {
                 path: 'content', component: AppLayoutComponent,

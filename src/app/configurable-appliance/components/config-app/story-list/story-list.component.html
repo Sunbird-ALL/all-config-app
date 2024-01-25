@@ -102,31 +102,34 @@
 
                             </div>
                         </th>
-                        <th style="min-width: 10rem">
+                        <th pSortableColumn="createdAt" style="min-width: 12rem">
                             <div
                                 class="flex justify-content-between align-items-center"
                             >
                                 Created At
+                                <p-sortIcon field="updatedAt"></p-sortIcon>
                                 <p-columnFilter
                                     type="date"
                                     field="createdAt"
                                     display="menu"
-                                    matchMode="contains"
+                                    class="ml-auto"
                                     placeholder="mm/dd/yyyy"
                                 ></p-columnFilter>
                             </div>
                         </th>
-                        <th style="min-width: 10rem">
+                        <th pSortableColumn="updatedAt" style="min-width: 12rem">
                             <div
                                 class="flex justify-content-between align-items-center"
                             >
                                 Updated At
+                                <p-sortIcon field="updatedAt"></p-sortIcon>
                                 <p-columnFilter
-                                    type="numeric"
+                                    type="date"
                                     field="updatedAt"
                                     display="menu"
-                                    matchMode="contains"
-                                    currency="USD"
+                                    class="ml-auto"
+                                    placeholder="mm/dd/yyyy"
+
                                 ></p-columnFilter>
                             </div>
                         </th>
@@ -136,16 +139,20 @@
                             >
                                 Collection ID
                                 <p-columnFilter
-                                    type="numeric"
+                                    type="text"
                                     field="collectionId"
                                     display="menu"
                                     matchMode="contains"
-                                    currency="USD"
                                 ></p-columnFilter>
                             </div>
                         </th>
 
-                        <th style="min-width: 14rem"></th>
+                        <th style="min-width: 14rem">
+                            <div
+                            class="flex justify-content-between align-items-center"
+                        > Actions
+                            </div>
+                        </th>
                     </tr>
                 </ng-template>
                 <ng-template
@@ -175,7 +182,7 @@
                                 story.updatedAt | date : "dd/MM/yyyy"
                             }}
                         </td>
-                        <td>
+                        <td (click)="openWordList(story.collectionId)" style="cursor: pointer; text-decoration: underline; color: blue;">
                             {{ story.collectionId }}
                            
                         </td>

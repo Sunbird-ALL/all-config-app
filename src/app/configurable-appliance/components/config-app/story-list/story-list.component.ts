@@ -5,6 +5,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AddOrEditStoryComponent } from './add-or-edit-story/add-or-edit-story.component';
 import { ContentService } from 'src/app/configurable-appliance/service/content.service';
 import { AddSentenceForStoryComponent } from './add-sentence-for-story/add-sentence-for-story.component';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './story-list.component.html',
@@ -20,6 +21,7 @@ export class StoryList implements OnInit {
         public ref: DynamicDialogRef,
         public dialogService: DialogService,
         private confirmationService: ConfirmationService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -159,5 +161,9 @@ export class StoryList implements OnInit {
 
     clear(table: Table) {
         table.clear();
+    }
+
+    openWordList(collectionId: string) {
+        this.router.navigate(['/content/word-sentence/list'], { queryParams: { collectionId } });
     }
 }

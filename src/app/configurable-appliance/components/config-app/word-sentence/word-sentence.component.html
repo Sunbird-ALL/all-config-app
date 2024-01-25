@@ -4,7 +4,7 @@
         <div class="card">
             <h5>Word & Sentences List</h5>
             <p-table
-                #dt1
+                #dt2
                 [value]="wordAndSentenceData"
                 dataKey="id"
                 [rows]="10"
@@ -13,6 +13,9 @@
                 styleClass="p-datatable-gridlines"
                 [paginator]="true"
                 responsiveLayout="scroll"
+                [globalFilterFields]="[
+                'collectionId'
+            ]"
             >
                 <ng-template pTemplate="caption">
                     <div
@@ -129,6 +132,7 @@
                             >
                                 Collection Id
                                 <p-columnFilter
+                                    #collectionIdFilter
                                     type="text"
                                     field="collectionId"
                                     display="menu"

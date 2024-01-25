@@ -14,24 +14,26 @@ export class AppMenuComponent implements OnInit {
 
     ngOnInit() {
         this.model = [
+            // {
+            //     label: 'Enable Authoring',
+            //     items: [
+            //         { label: 'Global Config', icon: 'pi pi-fw pi-box', routerLink: ['/content/galobal-config/list'] },
+            //     ]
+            // },
             {
-                label: 'Enable Authoring',
-                items: [
-                    { label: 'Global Config', icon: 'pi pi-fw pi-box', routerLink: ['/content/global-config/list'] },
-                ]
-            },
-            {
-                label: 'Story List',
+                label: 'Content Service',
                 items: [
                     { label: 'Stories', icon: 'pi pi-fw pi-bookmark', routerLink: ['/content/story/list'] },
-                ]
-            },
-            {
-                label: 'Word & Sentence List',
-                items: [
                     { label: 'Word & Sentence', icon: 'pi pi-fw pi-bars', routerLink: ['/content/word-sentence/list'] },
+
                 ]
             },
+            // {
+            //     label: 'Word & Sentence List',
+            //     items: [
+            //         { label: 'Word & Sentence', icon: 'pi pi-fw pi-bars', routerLink: ['/content/word-sentence/list'] },
+            //     ]
+            // },
             
         ];
     }
