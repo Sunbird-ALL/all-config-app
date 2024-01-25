@@ -1,0 +1,14 @@
+{
+    "URLS": {
+    
+        "GET_STORIES_URL": "v1/collection",
+        "DELETE_COLLECTION_URL":"v1/collection",
+        "EDIT_STORY_URL": "v1/collection",
+        "GET_WORD_SENTENCE_LIST" : "v1/content",
+        "DELETE_WORD_SENTENCE_URL" : "v1/content",
+        "CREAT_WORD_SENTENCE_URL" : "v1/content",
+        "GET_AUTHORING_CONFIG" :  "auth/getAllConfig",
+        "CREATE_AUTHORING_CONFIG" :  "auth/createAuthConfig",
+        "EDIT_AUTHORING_CONFIG" : "auth/createAuthConfig"
+    }
+}

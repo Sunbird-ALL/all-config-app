@@ -1,0 +1,194 @@
+<div *ngIf="mode === 'Add'">
+  <form [formGroup]="addStoryForm">
+    <div class="card p-fluid">
+      <p-messages
+        [(value)]="messages"
+        [enableService]="false"
+        [closable]="true"
+      ></p-messages>
+      <div class="field">
+        <label for="name">{{ "Name" }} *</label>
+        <input
+          type="text"
+          name="name"
+          pInputText
+          id="name"
+          autofocus
+          placeholder="{{ 'Enter Name' }}"
+          formControlName="name"
+        />
+      </div>
+      <div class="field">
+        <label for="author">{{ "Author" }} *</label>
+        <input
+          type="text"
+          name="author"
+          pInputText
+          id="author"
+          autofocus
+          placeholder="{{ 'Enter Author' }}"
+          formControlName="author"
+        />
+        <small *ngIf="submitted && addStoryForm.controls['author'].errors">{{
+          "Author"
+        }}</small>
+      </div>
+
+      <div class="field">
+        <label for="multiselect">{{ "Language" }} *</label>
+        <p-dropdown
+          formControlName="language"
+          [showClear]="true"
+          [options]="languageList"
+          optionLabel="label"
+          appendTo="body"
+          placeholder="{{ 'Select Language' }}"
+          optionValue="value"
+          [ngClass]="{
+            'ng-invalid ng-dirty': addStoryForm.controls['language'].errors
+          }"
+        ></p-dropdown>
+      </div>
+
+      <div class="field">
+        <label for="multiselect">{{ "Category" }}*</label>
+        <p-dropdown
+          formControlName="category"
+          [showClear]="true"
+          [options]="contentTypeList"
+          optionLabel="label"
+          appendTo="body"
+          placeholder="{{ 'Select Category' }}"
+          optionValue="value"
+        ></p-dropdown>
+      </div>
+
+      <div class="field">
+        <label for="description">{{ "Description" }} </label>
+        <input
+          type="text"
+          name="description"
+          pInputText
+          id="description"
+          placeholder="{{ 'Enter description' }}"
+          formControlName="description"
+        />
+      </div>
+
+
+      <!-- <div class="field">
+                <label for="multiselect">{{ 'Difficulty Status' }} *</label>
+                <p-dropdown formControlName="difficulty" [showClear]="true" [options]="difficultyLvlList"  optionLabel="label" appendTo="body" placeholder="{{'Select Difficulty'}}" optionValue="value"  [ngClass]="{'ng-invalid ng-dirty' : editStoryForm.controls['difficulty'].errors}"></p-dropdown>
+            </div> -->
+
+      <!-- <div class="field">
+                <label for="language">{{ 'Image' }} *</label>
+                <input type="text" name="image" pInputText id="image" autofocus placeholder="{{ 'Enter image' }}" formControlName="image" (input)="onInputChange($event,'org')" />
+                <small *ngIf="submitted && addStoryForm.controls['image'].errors">{{ 'image' }}</small>
+            </div> -->
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-4 p-xl-3 p-button-container">
+      <button
+        (click)="addOrEditStory('Add')"
+        pButton
+        pRipple
+        label="{{ 'Submit' }}"
+        icon="pi pi-check"
+        class="p-button p-button-success"
+      ></button
+      >&nbsp;
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="{{ 'Cancel' }}"
+        icon="pi pi-times"
+        class="p-button p-button-danger"
+        (click)="cancel()"
+      ></button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="mode === 'Edit'">
+  <form [formGroup]="editStoryForm">
+    <div class="card p-fluid">
+      <p-messages
+        [(value)]="messages"
+        [enableService]="false"
+        [closable]="true"
+      ></p-messages>
+      <div class="field">
+        <label for="name">{{ "Name" }} *</label>
+        <input
+          type="text"
+          name="name"
+          pInputText
+          id="name"
+          autofocus
+          placeholder="{{ 'Enter Name' }}"
+          formControlName="name"
+        />
+      </div>
+      <div class="field">
+        <label for="author">{{ "Author" }} *</label>
+        <input
+          type="text"
+          name="author"
+          pInputText
+          id="author"
+          autofocus
+          placeholder="{{ 'Enter Author' }}"
+          formControlName="author"
+        />
+      </div>
+
+      <div class="field">
+        <label for="multiselect">{{ "Language" }} *</label>
+        <p-dropdown
+          formControlName="language"
+          [showClear]="true"
+          [options]="languageList"
+          optionLabel="label"
+          appendTo="body"
+          placeholder="{{ 'Select Language' }}"
+          optionValue="value"
+          [ngClass]="{
+            'ng-invalid ng-dirty': editStoryForm.controls['language'].errors
+          }"
+        ></p-dropdown>
+      </div>
+
+      <!-- <div class="field">
+                <label for="multiselect">{{ 'Difficulty Status' }} *</label>
+                <p-dropdown formControlName="difficulty" [showClear]="true" [options]="difficultyLvlList"  optionLabel="label" appendTo="body" placeholder="{{'Select Difficulty'}}" optionValue="value"  [ngClass]="{'ng-invalid ng-dirty' : editStoryForm.controls['difficulty'].errors}"></p-dropdown>
+            </div> -->
+
+      <!-- <div class="field">
+                <label for="image">{{ 'Image' }} *</label>
+                <input type="text" name="image" pInputText id="image" autofocus placeholder="{{ 'Enter image' }}" formControlName="image" (input)="onInputChange($event,'org')" />
+                <small *ngIf="submitted && editStoryForm.controls['image'].errors">{{ 'image' }}</small>
+            </div> -->
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-4 p-xl-3 p-button-container">
+      <button
+        (click)="addOrEditStory('Edit')"
+        pButton
+        pRipple
+        label="{{ 'Submit' }}"
+        icon="pi pi-check"
+        class="p-button p-button-success"
+      ></button
+      >&nbsp;
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="{{ 'Cancel' }}"
+        icon="pi pi-times"
+        class="p-button p-button-danger"
+        (click)="cancel()"
+      ></button>
+    </div>
+  </form>
+</div>

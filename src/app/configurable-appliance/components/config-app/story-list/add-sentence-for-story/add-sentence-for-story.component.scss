@@ -1,0 +1,50 @@
+.button-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  button, .upload-button {
+    // padding: 10px;
+    // background-color: #007ad9; 
+    color: #ffffff; /* Text color */
+    border: none;
+    cursor: pointer;
+  }
+
+  .upload-button {
+    /* Take up remaining space in the row */
+  }
+
+  .upload-button .ui-button-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button:hover, .upload-button:hover {
+    background-color: #005ba3; /* Change the color on hover if desired */
+  }
+
+  button:active, .upload-button:active {
+    background-color: #003366; /* Change the color on click if desired */
+  }
+  .horizontal-radio-group {
+    display: flex;
+    flex-direction: row;
+  } 
+.radio-option {
+    margin-right: 10px; 
+  }
+.radio-option input[type="radio"] {
+    width: 20px; 
+  }
+
+  ::ng-deep .p-fileupload-choose {
+    background-color: #64748B;
+}
+
+/* Change the text color of the p-fileUpload button */
+::ng-deep .p-fileupload-choose span {
+    color: #ffffff;
+}
+  

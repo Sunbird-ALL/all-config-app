@@ -1,0 +1,245 @@
+<div *ngIf="mode === 'Add'">
+  <form [formGroup]="addWordAndSentenceForm">
+    <div class="card p-fluid">
+      <p-messages
+        [(value)]="messages"
+        [enableService]="false"
+        [closable]="true"
+      ></p-messages>
+      <div class="field">
+        <label for="name">{{ "Name" }} *</label>
+        <input
+          type="text"
+          name="name"
+          pInputText
+          id="name"
+          autofocus
+          placeholder="{{ 'Enter name' }}"
+          formControlName="name"
+        />
+        <small
+          *ngIf="submitted && addWordAndSentenceForm.controls['name'].errors"
+          >{{ "name" }}</small
+        >
+      </div>
+      <div class="field">
+        <label for="publisher">{{ "Author" }} *</label>
+        <input
+          type="text"
+          name="publisher"
+          pInputText
+          id="publisher"
+          autofocus
+          placeholder="{{ 'Enter publisher' }}"
+          formControlName="publisher"
+        />
+        <small
+          *ngIf="
+            submitted && addWordAndSentenceForm.controls['publisher'].errors
+          "
+          >{{ "publisher" }}</small
+        >
+      </div>
+
+      <div class="field">
+        <label for="multiselect">{{ "Content Type" }}*</label>
+        <p-dropdown
+          formControlName="contentType"
+          [showClear]="true"
+          [options]="contentTypeList"
+          optionLabel="label"
+          appendTo="body"
+          placeholder="{{ 'Select Content Type' }}"
+          optionValue="value"
+        ></p-dropdown>
+      </div>
+
+      <div class="field">
+        <label for="multiselect">{{ "Language" }} *</label>
+        <p-dropdown
+          formControlName="language"
+          [options]="languageList"
+          optionLabel="label"
+          appendTo="body"
+          placeholder="{{ 'Select Language' }}"
+          optionValue="value"
+        ></p-dropdown>
+      </div>
+      <div class="field">
+        <label for="text">{{ "Text" }} *</label>
+        <input
+          type="text"
+          name="text"
+          pInputText
+          id="text"
+          autofocus
+          placeholder="{{ 'Enter Text' }}"
+          formControlName="text"
+        />
+        <small
+          *ngIf="submitted && addWordAndSentenceForm.controls['text'].errors"
+          >{{ "Text" }}</small
+        >
+      </div>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-4 p-xl-3 p-button-container">
+      <button
+        (click)="saveWordAndSentece('Add')"
+        pButton
+        pRipple
+        label="{{ 'Submit' }}"
+        icon="pi pi-check"
+        class="p-button p-button-success"
+      ></button
+      >&nbsp;
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="{{ 'Cancel' }}"
+        icon="pi pi-times"
+        class="p-button p-button-danger"
+        (click)="cancel()"
+      ></button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="mode === 'Edit'">
+    <form [formGroup]="editWordAndSentenceForm">
+        <div class="card p-fluid">
+            <p-messages
+                [(value)]="messages"
+                [enableService]="false"
+                [closable]="true"
+            ></p-messages>
+
+            <div class="field">
+                <label for="contentType">{{ "Collection Id" }} *</label>
+                <input
+                    type="text"
+                    name="collectionId"
+                    pInputText
+                    id="collectionId"
+                    autofocus
+                    placeholder="{{ 'Enter collectionId' }}"
+                    formControlName="collectionId"
+                    readonly
+                />
+            </div>
+
+            <div class="field">
+                <label for="multiselect">{{ "Content Type" }}</label>
+                <p-dropdown
+                    formControlName="contentType"
+                    [showClear]="true"
+                    [options]="contentTypeList"
+                    optionLabel="label"
+                    appendTo="body"
+                    placeholder="{{ 'Select Content Type' }}"
+                    optionValue="value"
+                    [ngClass]="{
+                        'ng-invalid ng-dirty':
+                        editWordAndSentenceForm.controls['contentType'].errors
+                    }"
+                ></p-dropdown>
+            </div>
+
+            <div class="field">
+                <label for="contentText">{{ "Content Text" }} *</label>
+                <input
+                    type="text"
+                    name="contentText"
+                    pInputText
+                    id="contentText"
+                    autofocus
+                    placeholder="{{ 'Enter contentText' }}"
+                    formControlName="contentText"
+                />
+                <small
+                    *ngIf="
+                        submitted && editWordAndSentenceForm.controls['contentText'].errors
+                    "
+                    >{{ "contentText" }}</small
+                >
+            </div>
+
+            <!-- <div class="field">
+                <label for="contentType">{{ "Index" }} *</label>
+                <input
+                    type="number"
+                    name="index"
+                    pInputText
+                    id="index"
+                    autofocus
+                    placeholder="{{ 'Enter Index' }}"
+                    formControlName="index"
+                />
+            </div> -->
+            <!-- <div class="button-row">
+                <label style="margin-top: 10px;" for="contentAudio">{{ "Content Audio" }} </label>
+                <p-fileUpload
+                #fubauto
+                mode="basic"
+                name="configurable-appliance[]"
+                accept="audio/*"
+                maxFileSize="1000000"
+                (onUpload)="onAudioUpload($event)"
+                (onSelect)="onAudioUpload($event)"
+                [auto]="true"
+                chooseLabel="Upload"
+            ></p-fileUpload>  
+                <p-fileUpload
+                    #fubauto
+                    mode="basic"
+                    name="configurable-appliance[]"
+                    accept="image/*"
+                    maxFileSize="1000000"
+                    (onUpload)="onBasicUploadAuto($event)"
+                    [auto]="true"
+                    chooseLabel="Record"
+                ></p-fileUpload>
+               
+            </div>
+            &nbsp;
+            <div class="button-row">
+                <label style="margin-top: 10px;" for="contentAudio">{{ "Content Image" }}</label>
+                <p-fileUpload
+                  #fubauto
+                  mode="basic"
+                  name="configurable-appliance[]"
+                  accept="image/*"
+                  maxFileSize="1000000"
+                  (onUpload)="onBasicUploadAuto($event)"
+                  [auto]="true"
+                  chooseLabel="Upload"
+                  (onSelect)="handleFileInput($event)"
+                ></p-fileUpload>
+              </div>
+              &nbsp;
+              <div *ngIf="uploadedImage">
+                <img [src]="uploadedImage" alt="Uploaded Image" style="max-width: 100%;">
+              </div> -->
+        </div>
+        <div class="p-col-12 p-md-6 p-lg-4 p-xl-3 p-button-container">
+          <button
+            (click)="editContent()"
+            pButton
+            pRipple
+            label="{{ 'Submit' }}"
+            icon="pi pi-check"
+            class="p-button p-button-success"
+          ></button
+          >&nbsp;
+          <button
+            pButton
+            pRipple
+            type="button"
+            label="{{ 'Cancel' }}"
+            icon="pi pi-times"
+            class="p-button p-button-danger"
+            (click)="cancel()"
+          ></button>
+        </div>
+    </form>
+</div>

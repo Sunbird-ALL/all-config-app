@@ -1,0 +1,113 @@
+<div class="col-12">
+    <form [formGroup]="addAuthoringForm">
+        <div class="card">
+            <p-messages [(value)]="messages" [enableService]="false" [closable]="true"></p-messages>
+
+            <h4>
+                <b>{{ "Global Configuration" }}</b>
+            </h4>
+            <div class="p-fluid grid">
+
+                    <!-- Config ID -->
+
+                    <div class="field col-12 sm:col-12">
+                        <div class="col-6 sm:col-6">
+                            <h5>{{ "Config Id" }}</h5>
+                            <p-dropdown
+                                formControlName="configId"
+                                [showClear]="true"
+                                [options]="configIdList"
+                                placeholder="{{ 'Select Config ID' }}"
+                                [(ngModel)]="selectedOption"
+                                (onChange)="onConfigChange($event)"
+                            ></p-dropdown>
+                        </div>
+                    </div>
+
+                     <!-- Enviornment -->
+                <div class="field col-12 sm:col-12">
+                    <div class="col-6 sm:col-6">
+                        <h5>{{ "Environment" }}*</h5>
+                    <input type="text" name="envId" pInputText id="envId"  placeholder="{{ 'Enter the environment id' }}" formControlName="envId" />
+                        </div>
+                </div>
+                 <!-- Channel ID -->
+                <div class="field col-12 sm:col-12">
+                    <div class="col-6 sm:col-6">
+                        <h5>{{ "Channel" }}*</h5>
+                    <input type="text" name="channelId" pInputText id="channelId"  placeholder="{{ 'Enter the channel id' }}" formControlName="channelId" />
+                        </div>
+                </div>
+
+                 <!-- Procedure ID -->
+                <div class="field col-12 sm:col-12">
+                    <div class="col-6 sm:col-6">
+                        <h5>{{ "Producer" }}*</h5>
+                    <input type="text" name="pId" pInputText id="pId"  placeholder="{{ 'Enter pId' }}" formControlName="pId" />
+                        </div>
+                </div>
+
+            
+                <!-- Enable Authoring -->
+                <div class="field col-12 sm:col-12">
+                    <div class="col-6 sm:col-6">
+                        <h5>{{ "Enable Authoring" }}*</h5>
+                        <p-selectButton
+                            [options]="enableAuthoringList"
+                            optionLabel="name"
+                            formControlName="enableAuthoring"
+                            optionValue="value"
+                            name="enableAuthoring"
+                        ></p-selectButton>
+                    </div>
+                </div>
+
+                <!-- Choose Languages -->
+                <div class="field col-12 sm:col-12">
+                    <div class="col-6 sm:col-6">
+                        <h5>{{ "Choose Languages" }}*</h5>
+                        <p-multiSelect
+                            [options]="languageList"
+                            optionLabel="label"
+                            appendTo="body"
+                            placeholder="{{ 'Select Language' }}"
+                            optionValue="value"
+                            formControlName="languages"
+                            name="languages"
+                        ></p-multiSelect>
+                    </div>
+                </div>
+
+                <!-- Choose Modes to Enable -->
+                <div class="field col-12 sm:col-12">
+                    <div class="col-6 sm:col-6">
+                        <h5>{{ "Choose Modes to Enable" }}*</h5>
+
+                        <p-multiSelect
+                            [options]="modesList"
+                            optionLabel="label"
+                            appendTo="body"
+                            placeholder="{{ 'Select Modes' }}"
+                            optionValue="value"
+                            formControlName="modes"
+                            name="modes"
+                        ></p-multiSelect>
+                    </div>
+                </div>
+
+             
+                <!-- Submit Button -->
+                <div class="field p-col-12 p-lg-4 btn-width">
+                    <button
+                        (click)="saveData()"
+                        pButton
+                        pRipple
+                        label="{{ 'Submit' }}"
+                        icon="pi pi-check"
+                        class="p-button p-button-success"
+                    ></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
