@@ -67,7 +67,7 @@
       </div>
       <div class="field">
         <label for="text">{{ "Text" }} *</label>
-        <input
+        <textarea
           type="text"
           name="text"
           pInputText
@@ -75,7 +75,8 @@
           autofocus
           placeholder="{{ 'Enter Text' }}"
           formControlName="text"
-        />
+          rows="3" 
+        ></textarea>
         <small
           *ngIf="submitted && addWordAndSentenceForm.controls['text'].errors"
           >{{ "Text" }}</small
@@ -147,7 +148,7 @@
 
             <div class="field">
                 <label for="contentText">{{ "Content Text" }} *</label>
-                <input
+                <textarea
                     type="text"
                     name="contentText"
                     pInputText
@@ -155,7 +156,8 @@
                     autofocus
                     placeholder="{{ 'Enter contentText' }}"
                     formControlName="contentText"
-                />
+                    rows="4" 
+                ></textarea>
                 <small
                     *ngIf="
                         submitted && editWordAndSentenceForm.controls['contentText'].errors

@@ -1,9 +1,9 @@
 export const AppConfig = {
   languages: [
-    { label: "Hindi", value: "hi" },
-    { label: "English", value: "en" },
-    { label: "Kannada", value: "kn" },
-    { label: "Marathi", value: "ma" },
+    // { label: "Hindi", value: "hi" },
+    // { label: "English", value: "en" },
+    // { label: "Kannada", value: "kn" },
+    // { label: "Marathi", value: "ma" },
     { label: "Tamil", value: "ta" },
   ],
   modesList: [

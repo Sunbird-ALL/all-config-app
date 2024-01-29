@@ -118,7 +118,7 @@ export class WordSentenceComponent implements AfterViewInit {
 
     hideDialog() {
         this.editDialog = false;
-        location.reload();
+        // location.reload();
     }
 
     addMoreWords() {
@@ -130,8 +130,20 @@ export class WordSentenceComponent implements AfterViewInit {
                 overflow: 'auto',
             },
         });
-        this.ref.onClose.subscribe((data: any) => {
-            
+        this.ref.onClose.subscribe((newWord: any) => {
+            if (newWord) {
+                this.wordAndSentenceData.push(newWord);
+                this.messages = [];
+                this.messages = [
+                    {
+                        severity: 'info',
+                        summary: 'Created',
+                        detail: 'Content is Created',
+                    },
+                ];
+            this.dataTable.reset(); 
+            this.dataTable.value = this.wordAndSentenceData;
+            }
         });
     }
 
@@ -161,6 +173,8 @@ export class WordSentenceComponent implements AfterViewInit {
                         detail: 'Content is Updated',
                     },
                 ];
+                this.dataTable.reset(); 
+                this.dataTable.value = this.wordAndSentenceData;
                 
             }
         });

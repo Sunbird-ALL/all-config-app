@@ -40,7 +40,7 @@
 
             <div class="field">
                 <label for="contentText">{{ "Content Text" }} *</label>
-                <input
+                <textarea
                     type="text"
                     name="contentText"
                     pInputText
@@ -48,7 +48,8 @@
                     autofocus
                     placeholder="{{ 'Enter contentText' }}"
                     formControlName="contentText"
-                />
+                    rows="2"
+                ></textarea>
                 <small
                     *ngIf="
                         submitted && ContentForm.controls['contentText'].errors
@@ -178,7 +179,7 @@
 
             <div class="field">
                 <label for="contentText">{{ "Content Text" }} *</label>
-                <input
+                <textarea
                     type="text"
                     name="contentText"
                     pInputText
@@ -186,7 +187,8 @@
                     autofocus
                     placeholder="{{ 'Enter contentText' }}"
                     formControlName="contentText"
-                />
+                    rows="2"
+                ></textarea>
                 <small
                     *ngIf="
                         submitted && editContentForm.controls['contentText'].errors
