@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { MessageService, ConfirmationService, Message } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class StoryList implements OnInit {
     storyList: any[] = [];
+    @ViewChild('dt') dataTable: Table;
     loading: boolean = false;
     messages: Message[] = [];
 
@@ -68,6 +69,8 @@ export class StoryList implements OnInit {
                         detail: 'Story is Created',
                     },
                 ];
+            this.dataTable.reset(); 
+            this.dataTable.value = this.storyList;
             }
         });
     }
@@ -94,6 +97,8 @@ export class StoryList implements OnInit {
                             detail: 'Content is Created',
                         },
                     ];
+                    this.dataTable.reset(); 
+                    this.dataTable.value = this.storyList;
                 }
         });
     }
@@ -123,6 +128,8 @@ export class StoryList implements OnInit {
                         detail: 'Story is Updated',
                     },
                 ];
+                this.dataTable.reset(); 
+                this.dataTable.value = this.storyList;
             }
         });
     }
