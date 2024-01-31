@@ -55,5 +55,7 @@ export class ContentService {
   getConfigById(data,id) : Observable <any> {
     return this.http.get(environment.configPort +config.URLS.GET_AUTHORING_CONFIG + `/${id}`,data)
   }
-  
+  getVirtualID(userName,password) : Observable <any> {
+    return this.http.get(environment.ANGULAR_APP_LEARNER_AI_APP_HOST +config.URLS.GET_VIRTUAL_ID + `?username=${userName}&password=${password}`)
+  }
 }

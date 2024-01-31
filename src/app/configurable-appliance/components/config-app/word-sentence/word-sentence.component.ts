@@ -5,6 +5,8 @@ import { ContentService } from 'src/app/configurable-appliance/service/content.s
 import { MessageService, ConfirmationService, Message } from 'primeng/api';
 import { AddWordSentencesComponent } from './add-word-sentences/add-word-sentences.component';
 import { ActivatedRoute } from '@angular/router';
+import { SelectItem } from 'primeng/api';
+import { AppConfig } from 'src/app/configurable-appliance/interface/content.interface';
 
 @Component({
     selector: 'app-word-sentence',
@@ -21,8 +23,11 @@ export class WordSentenceComponent implements AfterViewInit {
     collectionId: string;
     @ViewChild('dt2') dataTable: Table;
     @ViewChild('collectionIdFilter') collectionIdFilter: any;
-
-
+    editingWordAndSentence: any = null;
+    contentTypeOptions: SelectItem[] = AppConfig.contentTypeListForFilter
+    languageOptions:SelectItem[]=AppConfig.languages
+    showDropdown = false;
+    
     constructor(
         private contentService: ContentService,
         public ref: DynamicDialogRef,
@@ -37,6 +42,13 @@ export class WordSentenceComponent implements AfterViewInit {
         this.route.queryParams.subscribe(params => {
             this.collectionId = params['collectionId'];
         });
+    }
+    
+    toggleDropdown(event: Event) {
+        event.stopPropagation(); // Prevent the dropdown from immediately closing
+        this.showDropdown = !this.showDropdown;
+        console.log(this.showDropdown);
+        
     }
 
     ngAfterViewInit() {
@@ -147,40 +159,52 @@ export class WordSentenceComponent implements AfterViewInit {
         });
     }
 
-    editWorkAndSentence(wordAndSentenceData) {
-        this.ref = this.dialogService.open(AddWordSentencesComponent, {
-            header: 'Edit Word Or Sentence',
-            data: {
-                mode: 'Edit',
-                wordAndSentenceData: wordAndSentenceData,
-            },
-            width: '40%',
-            contentStyle: {
-                overflow: 'auto',
-            },
-        });
-        this.ref.onClose.subscribe((newWordData: any) => {
-            if(newWordData){
-                const index = this.wordAndSentenceData.findIndex((story) => story._id === newWordData._id);
-                if (index !== -1) {
-           this.wordAndSentenceData[index] = newWordData;
-  }
-                this.messages = [];
-                this.messages = [
+      editContent(wordAndSentenceData) {
+        if (this.editingWordAndSentence) {
+            this.editingWordAndSentence.isEditing = false;
+            this.editingWordAndSentence = null;
+        }
+        
+            const body = {
+                collectionId: "",
+                name: wordAndSentenceData.name,
+                contentType: wordAndSentenceData.contentType,
+                image: "",
+                language: wordAndSentenceData.language,
+                status: "live",
+                contentSourceData : [
                     {
-                        severity: 'info',
-                        summary: 'Updated',
-                        detail: 'Content is Updated',
-                    },
+                        language: wordAndSentenceData.language,
+                        audioUrl: "",
+                        text : wordAndSentenceData.contentSourceData[0].text,
+                    }
+                ]
+                 
+              };
+        
+        this.contentService.editMoreWords(body,wordAndSentenceData._id).subscribe(
+            (response) => {
+                if(response.updated){
+                    wordAndSentenceData.isEditing = false;
+                    this.editingWordAndSentence = null;
+                }
+            },
+            (error: any) => {
+                this.messages = [
+                    { severity: 'error', summary: 'Please fill all fields' }
                 ];
-                this.dataTable.reset(); 
-                this.dataTable.value = this.wordAndSentenceData;
-                
             }
-        });
+        );
     }
   
     clear(table: Table) {
         table.clear();
     }
+
+  toggleEdit(wordAndSentence: any): void {
+    if (!this.editingWordAndSentence) {
+        this.editingWordAndSentence = { ...wordAndSentence };
+        wordAndSentence.isEditing = true;
+    }
+  }
 }

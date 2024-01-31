@@ -98,18 +98,24 @@
                             </div>
                         </th> -->
                         <th style="min-width: 12rem">
-                            <div
-                                class="flex justify-content-between align-items-center"
-                            >
-                                Content Type
-                                <p-columnFilter
-                                    type="text"
-                                    field="contentType"
-                                    display="menu"
-                                    matchMode="contains"
-                                    placeholder="Search by Content Type"
-                                ></p-columnFilter>
-                            </div>
+                            <p-columnFilter matchMode="contains" field="contentType" [showMenu]="false">
+                                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                    <div class="flex justify-content-between align-items-center">
+                                        Content Type
+                                        <p-dropdown
+                                            [filterValue]="contentTypeOptions[0]"
+                                            [ngModel]="value"
+                                            [options]="contentTypeOptions"
+                                            (onChange)="filter($event.value)"
+                                            [showClear]="true"
+                                            placeholder="Search"
+                                            [filter]="true"
+                                            editable="true"
+                                            style="width: 150px;"
+                                        ></p-dropdown>
+                                    </div>
+                                </ng-template>
+                            </p-columnFilter>
                         </th>
                         <th style="min-width: 12rem">
                             <div
@@ -147,23 +153,55 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-wordAndSentence>
                     <tr>
-                        <td >
-                            {{wordAndSentence.contentSourceData[0].text}}
-                        </td>  
+                        <td>
+                            <ng-container *ngIf="!wordAndSentence.isEditing; else editTemplate">
+                              {{ wordAndSentence.contentSourceData[0].text }}
+                            </ng-container>
+                            <ng-template #editTemplate>
+                              <div class="field">
+                                <textarea
+                                  type="text"
+                                  pInputText
+                                  autofocus
+                                  [(ngModel)]="wordAndSentence.contentSourceData[0].text"
+                                  class="form-control"
+                                  rows="4"
+                                  style="width: 400px;"
+                                ></textarea>
+                              </div>
+                            </ng-template>
                         <td >
                             {{wordAndSentence.tags}}
                         </td>
-                        <!-- <td >
-                            {{wordAndSentence.name}}
-                        </td> -->
-                        <!-- <td >
-                            {{wordAndSentence.data.publishedBy}}
-                        </td> -->
                         <td >
-                            {{wordAndSentence.contentType}}
-                        </td>
+                            <ng-container *ngIf="!wordAndSentence.isEditing; else dropdownTemplate">
+                                {{wordAndSentence.contentType}}
+                            </ng-container>
+
+                            <ng-template #dropdownTemplate>
+                                <p-dropdown
+                                  [(ngModel)]="wordAndSentence.contentType"
+                                  [options]="contentTypeOptions"
+                                  optionLabel="label"
+                                  optionValue="value"
+                                  appendTo="body"
+                                ></p-dropdown>
+                              </ng-template>
+                        </td>                   
                         <td >
-                            {{wordAndSentence.language}}
+                            <ng-container *ngIf="!wordAndSentence.isEditing; else languageTemplate">
+                                {{wordAndSentence.language}}
+                            </ng-container>
+
+                            <ng-template #languageTemplate>
+                                <p-dropdown
+                                  [(ngModel)]="wordAndSentence.language"
+                                  [options]="languageOptions"
+                                  optionLabel="label"
+                                  optionValue="value"
+                                  appendTo="body"
+                                ></p-dropdown>
+                              </ng-template>
                         </td>
 
 
@@ -172,7 +210,23 @@
                         </td>
                        
 						<td style="text-align: center">
-							<button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editWorkAndSentence(wordAndSentence)"></button>
+							<!-- <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-danger mr-2" (click)="editWorkAndSentence(wordAndSentence)"></button> -->
+                            <button
+                            *ngIf="!wordAndSentence.isEditing"
+                            pButton
+                            pRipple
+                            icon="pi pi-pencil"
+                            class="p-button-rounded p-button-success mr-2"
+                            (click)="toggleEdit(wordAndSentence)"
+                          ></button>
+                          <button
+                            *ngIf="wordAndSentence.isEditing"
+                            pButton
+                            pRipple
+                            icon="pi pi-check"
+                            class="p-button-rounded p-button-success mr-2"
+                            (click)="editContent(wordAndSentence)"
+                          ></button>
 							<!-- <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteWorkAndSentence(wordAndSentence)"></button> -->
                         </td>
                     </tr>

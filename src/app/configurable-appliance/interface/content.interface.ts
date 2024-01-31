@@ -18,6 +18,12 @@ export const AppConfig = {
     { label: "Word", value: "word" },
     { label: "Sentence", value: "sentence" },
   ],
+  contentTypeListForFilter: [
+    { label: "Char", value: "char" },
+    { label: "Word", value: "word" },
+    { label: "Sentence", value: "sentence" },
+    { label: "Paragraph", value: "paragraph" },
+  ],
   difficultyLvlList: [
     { label: "LOW", value: "low" },
     { label: "MEDIUM", value: "medium" },

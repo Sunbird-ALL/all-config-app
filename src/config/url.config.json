@@ -9,6 +9,7 @@
         "CREAT_WORD_SENTENCE_URL" : "v1/content",
         "GET_AUTHORING_CONFIG" :  "auth/getAllConfig",
         "CREATE_AUTHORING_CONFIG" :  "auth/createAuthConfig",
-        "EDIT_AUTHORING_CONFIG" : "auth/createAuthConfig"
+        "EDIT_AUTHORING_CONFIG" : "auth/createAuthConfig",
+        "GET_VIRTUAL_ID": "/v1/vid/generateVirtualID"
     }
 }
