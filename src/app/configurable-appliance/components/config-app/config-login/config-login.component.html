@@ -1,0 +1,30 @@
+<div class="login-container">
+  <form (ngSubmit)="login(loginForm)" [formGroup]="loginForm">
+    <h1 style="text-align: center;">Login</h1>
+
+    <div class="p-field"
+      [class.p-error]="loginForm.get('username').touched && loginForm.get('username').hasError('required')">
+      <label for="username">Username<span class="required">*</span></label>
+      <input type="text" id="username" formControlName="username" pInputText required>
+      <small *ngIf="loginForm.get('username').touched && loginForm.get('username').hasError('required')"
+        class="error-message">Username is required.</small>
+    </div>
+
+    <div class="p-field"
+      [class.p-error]="loginForm.get('password').touched && loginForm.get('password').hasError('required')">
+      <label for="password">Password<span class="required">*</span></label>
+      <div class="password-input-container">
+        <input type="{{ showPassword ? 'text' : 'password' }}" id="password" formControlName="password" pPassword
+          required>
+        <i style="padding-bottom: 6px;" class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye' "
+          (click)="togglePasswordVisibility()"></i>
+      </div>
+
+      <small *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')"
+        class="error-message">Password is required.</small>
+    </div>
+
+
+    <button type="submit" style="height: 45px;" pButton label="Login"></button>
+  </form>
+</div>
