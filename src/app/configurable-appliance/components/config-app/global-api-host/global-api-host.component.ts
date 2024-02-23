@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ContentService } from 'src/app/configurable-appliance/service/content.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-global-api-host',
@@ -12,6 +13,8 @@ import { ContentService } from 'src/app/configurable-appliance/service/content.s
 export class GlobalApiHostComponent implements OnInit {
   display: boolean = true;
   environmentForm: FormGroup;
+  devUrl: string = environment.devPort;
+  prodUrl: string = environment.prodPort;
 
   constructor(
     private fb: FormBuilder,
