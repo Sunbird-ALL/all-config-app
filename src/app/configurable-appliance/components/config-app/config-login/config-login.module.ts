@@ -5,6 +5,8 @@ import { ConfigLoginRoutingComponent } from './config-login-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @NgModule({
     declarations: [ConfigLoginComponent],
@@ -15,7 +17,9 @@ import { ButtonModule } from 'primeng/button';
         ReactiveFormsModule,
         InputTextModule,
         ButtonModule,
+        DialogModule,
+        
     ],
-    providers: [],
+    providers: [DialogService],
 })
 export class ConfigLoginModule {}

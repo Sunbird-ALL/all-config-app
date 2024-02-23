@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AuthService } from 'src/app/configurable-appliance/guards/auth.service';
 import { ContentService } from 'src/app/configurable-appliance/service/content.service';
+import { GlobalApiHostComponent } from '../global-api-host/global-api-host.component';
 
 @Component({
   selector: 'app-config-login',
@@ -17,7 +19,8 @@ export class ConfigLoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private contentService: ContentService
+    private contentService: ContentService,
+    private dialogService: DialogService
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -43,7 +46,15 @@ export class ConfigLoginComponent implements OnInit {
 
   checkVirtualID(virtualID) {
     if (this.authService.checkVirtualID(virtualID)) {
-      this.router.navigate(['/content/story/list']);
+      const ref: DynamicDialogRef = this.dialogService.open(GlobalApiHostComponent, {
+        header: 'Select Environment',
+        width: '450px', 
+        height: '405px', 
+        closable: true, 
+        contentStyle: {
+          'font-size': '28px'         }
+      });
+    
     } else {
       this.router.navigate(['/forbidden']);
     }
