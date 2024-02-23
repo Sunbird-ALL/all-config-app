@@ -8,38 +8,46 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ContentService {
-    
+    port = environment.devPort;
    constructor(private http: HttpClient) { }
+  
+   getApiHost(env: string) {
 
-
+    if(env === 'dev'){
+       this.port = environment.devPort;
+    }else if(env === 'prod'){
+       this.port = environment.prodPort;
+    }
+    return true;
+  }
   getStoriesList(): Observable<Object> {
-    return this.http.get(environment.port +config.URLS.GET_STORIES_URL)
+    return this.http.get(this.port +config.URLS.GET_STORIES_URL)
   }
 
   getWordSentenceList(): Observable<Object> {
-    return this.http.get(environment.port +config.URLS.GET_WORD_SENTENCE_LIST)
+    return this.http.get(this.port +config.URLS.GET_WORD_SENTENCE_LIST)
   }
 
   addMoreStory(body: any): Observable<any> {
-    return this.http.post(environment.port +config.URLS.GET_STORIES_URL,body)
+    return this.http.post(this.port +config.URLS.GET_STORIES_URL,body)
   }
 
   deleteCollection(body: any): Observable<any> {
-    return this.http.delete(environment.port +config.URLS.DELETE_COLLECTION_URL+'/'+body)
+    return this.http.delete(this.port +config.URLS.DELETE_COLLECTION_URL+'/'+body)
   }
 
   deleteWordAndSentence(body: any): Observable<any> {
-    return this.http.delete(environment.port +config.URLS.DELETE_WORD_SENTENCE_URL+'/'+body)
+    return this.http.delete(this.port +config.URLS.DELETE_WORD_SENTENCE_URL+'/'+body)
   }
 
   addMoreWords(body: any): Observable<any> {
-    return this.http.post(environment.port +config.URLS.CREAT_WORD_SENTENCE_URL,body)
+    return this.http.post(this.port +config.URLS.CREAT_WORD_SENTENCE_URL,body)
   }
   editStory(body: any,id): Observable<any> {
-    return this.http.put(environment.port +config.URLS.EDIT_STORY_URL+ `/${id}`,body)
+    return this.http.put(this.port +config.URLS.EDIT_STORY_URL+ `/${id}`,body)
   }
   editMoreWords(body: any,id): Observable<any> {
-    return this.http.put(environment.port +config.URLS.CREAT_WORD_SENTENCE_URL+ `/${id}`,body)
+    return this.http.put(this.port +config.URLS.CREAT_WORD_SENTENCE_URL+ `/${id}`,body)
   }
 
   getAuthoringConfig(): Observable<any> {

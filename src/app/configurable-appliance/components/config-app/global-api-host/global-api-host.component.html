@@ -1,0 +1,25 @@
+<div>
+  <form [formGroup]="environmentForm">
+    <div class="field">
+      <label>
+        <input type="radio" formControlName="environment" value="dev"> Development
+        <br>
+        <a style="margin-left: 10px;">https://www.learnerai-dev.theall.ai/content-service</a>
+      </label>
+    </div>
+    <div class="field">
+      <label>
+        <input type="radio" formControlName="environment" value="prod"> Production
+        <br>
+        <a style="margin-left: 10px;">https://www.learnerai.theall.ai/content-service</a>
+      </label>
+    </div>
+    <!-- Validation message -->
+    <div *ngIf="environmentForm.get('environment').invalid && environmentForm.get('environment').touched" class="text-danger">
+      Please select an environment.
+    </div>
+ 
+  </form>
+  <button pButton type="button" style="height: 45px;" pButton label="Submit" (click)="submitEnvironment()"></button>
+ 
+</div>

@@ -1,10 +1,10 @@
 export const AppConfig = {
   languages: [
-    // { label: "Hindi", value: "hi" },
-    // { label: "English", value: "en" },
-    // { label: "Kannada", value: "kn" },
-    // { label: "Marathi", value: "ma" },
+    { label: "English", value: "en" },
+    { label: "Kannada", value: "kn" },
     { label: "Tamil", value: "ta" },
+    // { label: "Marathi", value: "ma" },
+    // { label: "Hindi", value: "hi" },
   ],
   modesList: [
     { label: "Simple Mode", value: "simpleMode" },
