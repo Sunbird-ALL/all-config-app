@@ -48,8 +48,6 @@ export class ConfigLoginComponent implements OnInit {
     if (this.authService.checkVirtualID(virtualID)) {
       const ref: DynamicDialogRef = this.dialogService.open(GlobalApiHostComponent, {
         header: 'Select Environment',
-        width: '450px', 
-        height: '405px', 
         closable: true, 
         contentStyle: {
           'font-size': '28px'         }
