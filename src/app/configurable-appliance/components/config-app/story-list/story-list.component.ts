@@ -143,7 +143,6 @@ export class StoryList implements OnInit {
                 .deleteCollection(data ?._id)
                 .subscribe((e) => {
                     this.storyList = this.storyList.filter(story => story._id !== data?._id);
-                    this.dataTable.reset();
                 });
                 this.messages = [];
                 this.messages = [
