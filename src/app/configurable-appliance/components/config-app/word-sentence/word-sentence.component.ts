@@ -104,7 +104,8 @@ export class WordSentenceComponent implements AfterViewInit {
                 this.contentService
                     .deleteWordAndSentence(data?._id)
                     .subscribe((e) => {
-                        location.reload();
+                        this.wordAndSentenceData = this.wordAndSentenceData.filter(story => story._id !== data?._id);
+                        this.dataTable.reset();
                     });
                 this.messages = [];
                 this.messages = [
