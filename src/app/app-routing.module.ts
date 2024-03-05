@@ -30,7 +30,7 @@ import { AccessForbiddenComponent } from './configurable-appliance/components/ac
             { path: 'notfound', component: NotfoundComponent },
             { path: 'forbidden', component: AccessForbiddenComponent },
             { path: '**', redirectTo: '/notfound' },
-        ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })
+        ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload',  useHash: true })
     ],
     exports: [RouterModule]
 })
