@@ -50,7 +50,7 @@
                                 Text
                                 <p-columnFilter
                                     type="text"
-                                    field="text"
+                                    field="contentSourceData.0.text"
                                     display="menu"
                                     matchMode="contains"
                                     placeholder="Search"
@@ -101,7 +101,7 @@
                         <th style="min-width: 12rem">
                             <p-columnFilter matchMode="contains" field="contentType" [showMenu]="false">
                                 <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                    <div class="flex justify-content-between align-items-center">
+                                    <div class="flex justify-content-between align-items-center dropdown-container">
                                         Content Type
                                         <p-dropdown
                                             [filterValue]="contentTypeOptions[0]"
@@ -112,7 +112,8 @@
                                             placeholder="Search"
                                             [filter]="true"
                                             editable="true"
-                                            style="width: 150px;"
+                                            [style]="{ 'width': '150px' }"
+                                            appendTo="body"
                                         ></p-dropdown>
                                     </div>
                                 </ng-template>
@@ -153,7 +154,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-wordAndSentence>
-                    <tr>
+                    <tr [ngClass]="{'disabled-row': wordAndSentence.deleted}">
                         <td>
                             <ng-container *ngIf="!wordAndSentence.isEditing; else editTemplate">
                               {{ wordAndSentence.contentSourceData[0].text }}
