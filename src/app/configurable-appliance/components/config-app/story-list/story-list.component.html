@@ -160,7 +160,7 @@
                     pTemplate="body"
                     let-story
                 >
-                    <tr [pEditableRow]="tutorial">
+                    <tr [pEditableRow]="tutorial" [ngClass]="{'disabled-row': story.deleted}">
                         <td>
                             {{ story.name }}
                         </td>
