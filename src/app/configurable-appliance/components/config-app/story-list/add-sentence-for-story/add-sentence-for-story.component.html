@@ -37,7 +37,19 @@
                     }"
                 ></p-dropdown>
             </div>
-
+            <div class="field">
+                <label for="contentType">{{ "Index" }} *</label>
+                <input
+                    type="number"
+                    name="index"
+                    pInputText
+                    id="index"
+                    autofocus
+                    placeholder="{{ 'Enter Index' }}"
+                    formControlName="index"
+                    min="0"
+                />
+            </div>
             <div class="field">
                 <label for="contentText">{{ "Content Text" }} *</label>
                 <textarea
@@ -58,18 +70,7 @@
                 >
             </div>
 
-            <!-- <div class="field">
-                <label for="contentType">{{ "Index" }} *</label>
-                <input
-                    type="number"
-                    name="index"
-                    pInputText
-                    id="index"
-                    autofocus
-                    placeholder="{{ 'Enter Index' }}"
-                    formControlName="index"
-                />
-            </div> -->
+          
             <!-- <div class="button-row">
                 <label style="margin-top: 10px;" for="contentAudio">{{ "Content Audio" }} </label>
                 <p-fileUpload

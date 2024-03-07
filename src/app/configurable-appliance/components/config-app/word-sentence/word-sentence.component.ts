@@ -104,7 +104,8 @@ export class WordSentenceComponent implements AfterViewInit {
                 this.contentService
                     .deleteWordAndSentence(data?._id)
                     .subscribe((e) => {
-                        this.wordAndSentenceData = this.wordAndSentenceData.filter(story => story._id !== data?._id);
+                        // this.wordAndSentenceData = this.wordAndSentenceData.filter(story => story._id !== data?._id);
+                        data.deleted = true;
                     });
                 this.messages = [];
                 this.messages = [
@@ -184,7 +185,7 @@ export class WordSentenceComponent implements AfterViewInit {
         
         this.contentService.editMoreWords(body,wordAndSentenceData._id).subscribe(
             (response) => {
-                if(response.updated){
+                if(response.status === "success"){
                     wordAndSentenceData.isEditing = false;
                     this.editingWordAndSentence = null;
                 }

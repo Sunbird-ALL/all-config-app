@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './story-list.component.html',
+    styleUrls: ['./story-list.component.scss'],
     providers: [MessageService, ConfirmationService],
 })
 export class StoryList implements OnInit {
@@ -142,7 +143,8 @@ export class StoryList implements OnInit {
                 this.contentService
                 .deleteCollection(data ?._id)
                 .subscribe((e) => {
-                    this.storyList = this.storyList.filter(story => story._id !== data?._id);
+                    // this.storyList = this.storyList.filter(story => story._id !== data?._id);
+                    data.deleted = true;
                 });
                 this.messages = [];
                 this.messages = [
