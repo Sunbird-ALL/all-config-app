@@ -79,6 +79,7 @@ body:
         - SamagraX
         - ShikshaLokam
         - Tech4Dev
+        - Tekdi
         - Tibil
     validations:
       required: true
