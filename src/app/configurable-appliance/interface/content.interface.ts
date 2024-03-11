@@ -3,6 +3,7 @@ export const AppConfig = {
     { label: "English", value: "en" },
     { label: "Kannada", value: "kn" },
     { label: "Tamil", value: "ta" },
+    { label: "Telugu", value:"te"},
     // { label: "Marathi", value: "ma" },
     // { label: "Hindi", value: "hi" },
   ],
