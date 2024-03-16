@@ -169,7 +169,7 @@ export class StoryList implements OnInit {
     }
 
     clear(table: Table) {
-        table.clear();
+       this.dataTable.reset();
     }
 
     openWordList(collectionId: string) {
