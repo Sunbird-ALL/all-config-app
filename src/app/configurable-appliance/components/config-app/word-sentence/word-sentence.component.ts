@@ -199,7 +199,7 @@ export class WordSentenceComponent implements AfterViewInit {
     }
   
     clear(table: Table) {
-        table.clear();
+        table.dataTable.clear();
     }
 
   toggleEdit(wordAndSentence: any): void {
