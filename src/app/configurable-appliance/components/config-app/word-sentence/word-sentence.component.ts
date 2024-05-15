@@ -166,7 +166,7 @@ export class WordSentenceComponent implements AfterViewInit {
         }
         
             const body = {
-                collectionId: "",
+                collectionId: wordAndSentenceData.collectionId,
                 name: wordAndSentenceData.name,
                 contentType: wordAndSentenceData.contentType,
                 image: "",
