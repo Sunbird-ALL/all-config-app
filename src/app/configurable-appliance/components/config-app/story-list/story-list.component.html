@@ -8,6 +8,7 @@
                 [value]="storyList"
                 dataKey="id"
                 [rows]="10"
+                [rowsPerPageOptions]="[10,100,200,300]" 
                 [loading]="loading"
                 [rowHover]="true"
                 styleClass="p-datatable-gridlines"
@@ -159,7 +160,7 @@
                     pTemplate="body"
                     let-story
                 >
-                    <tr [pEditableRow]="tutorial">
+                    <tr [pEditableRow]="tutorial" [ngClass]="{'disabled-row': story.deleted}">
                         <td>
                             {{ story.name }}
                         </td>
