@@ -16,14 +16,14 @@ export const AppConfig = {
     { name: "No", value: false },
   ],
   contentTypeList: [
-    { label: "Word", value: "word" },
-    { label: "Sentence", value: "sentence" },
+    { label: "Word", value: "Word" },
+    { label: "Sentence", value: "Sentence" },
   ],
   contentTypeListForFilter: [
-    { label: "Char", value: "char" },
-    { label: "Word", value: "word" },
-    { label: "Sentence", value: "sentence" },
-    { label: "Paragraph", value: "paragraph" },
+    { label: "Char", value: "Char" },
+    { label: "Word", value: "Word" },
+    { label: "Sentence", value: "Sentence" },
+    { label: "Paragraph", value: "Paragraph" },
   ],
   difficultyLvlList: [
     { label: "LOW", value: "low" },

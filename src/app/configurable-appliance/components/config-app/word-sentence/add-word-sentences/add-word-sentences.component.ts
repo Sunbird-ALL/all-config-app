@@ -111,7 +111,7 @@ export class AddWordSentencesComponent implements OnInit {
               return;
           }
           const body = {
-            collectionId: "",
+            collectionId: this.wordAndSentenceData.collectionId,
             name: this.wordAndSentenceData.name,
             contentType: this.wordAndSentenceData.contentType,
             image: " ",
@@ -149,7 +149,7 @@ export class AddWordSentencesComponent implements OnInit {
         return;
     }
         const body = {
-            collectionId: "",
+            collectionId: this.wordAndSentenceData.collectionId,
             name: this.wordAndSentenceData.name,
             contentType: this.editWordAndSentenceForm.value.contentType,
             image: " ",

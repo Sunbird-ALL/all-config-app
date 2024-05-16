@@ -14,7 +14,7 @@ export class AuthService {
   }
   private isAuthenticatedd = false;
 
-  checkVirtualID(virtualID): number | null {
+  checkVirtualID(virtualID): any | null {
     const storedVirtualID = localStorage.getItem('VirtualID');
     if (storedVirtualID) {
       this.isAuthenticatedd = true;
