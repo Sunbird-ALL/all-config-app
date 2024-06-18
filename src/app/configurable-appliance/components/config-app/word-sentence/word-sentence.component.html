@@ -7,17 +7,24 @@
                 #dt2
                 [value]="wordAndSentenceData"
                 dataKey="id"
-                [rows]="10"
-                [rowsPerPageOptions]="[10,100,200,300]" 
+                [rows]="rowsPerPage"
+                [rowsPerPageOptions]="rowsPerPageOptions"
                 [loading]="loading"
                 [rowHover]="true"
                 styleClass="p-datatable-gridlines"
                 [paginator]="true"
-                responsiveLayout="scroll"
+                responsiveLayout="scroll" 
                 [globalFilterFields]="[
                 'collectionId'
-            ]"
-            >
+                ]"
+                [columns]="cols"
+                [totalRecords]="recordCount"
+                [(first)]="first" 
+                [showCurrentPageReport]="true"
+                [lazy]="true"
+                (onPage)="onPageChange($event)"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        >
                 <ng-template pTemplate="caption">
                     <div
                         class="flex justify-content-between flex-column sm:flex-row"
@@ -149,7 +156,35 @@
                                 ></p-columnFilter>
                             </div>
                         </th>
-                        <th style="min-width: 5rem"> Actions</th>
+                        <!-- <th style="min-width: 10rem">
+                            <div
+                                class="flex justify-content-between align-items-center"
+                            >
+                                Created By
+                                <p-columnFilter
+                                    type="text"
+                                    field="contentSourceData.0.createdBy"
+                                    display="menu"
+                                    matchMode="contains"
+                                    placeholder="Search"
+                                ></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 10rem">
+                            <div
+                                class="flex justify-content-between align-items-center"
+                            >
+                                Updated By
+                                <p-columnFilter
+                                    type="text"
+                                    field="contentSourceData.0.updatedBy"
+                                    display="menu"
+                                    matchMode="contains"
+                                    placeholder="Search"
+                                ></p-columnFilter>
+                            </div>
+                        </th> -->
+                        <th style="min-width: 10rem"> Actions</th>
 
                     </tr>
                 </ng-template>
@@ -211,6 +246,14 @@
                         <td >
                             {{wordAndSentence.collectionId}}
                         </td>
+
+                        <!-- <td>
+                            {{wordAndSentence.createdBy}}
+                        </td>
+
+                        <td>
+                            {{wordAndSentence.updatedBy}}
+                        </td> -->
                        
 						<td style="text-align: center">
 							<!-- <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-danger mr-2" (click)="editWorkAndSentence(wordAndSentence)"></button> -->

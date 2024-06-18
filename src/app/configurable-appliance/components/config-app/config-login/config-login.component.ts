@@ -36,8 +36,8 @@ export class ConfigLoginComponent implements OnInit {
       const { username, password } = loginForm.value;
       this.contentService.getVirtualID(username, password).subscribe(
         (response: any) => {
-          if (response.virtualID) {
-            this.checkVirtualID(response.virtualID)
+          if (response?.result?.virtualID) {
+            this.checkVirtualID(Number(response?.result?.virtualID))
           }
         }
       );

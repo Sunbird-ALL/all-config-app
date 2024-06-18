@@ -92,6 +92,7 @@ export class AddOrEditStoryComponent {
             category:this.addStoryForm.value.category,
             description:this.addStoryForm.value.description,
             status: "live",
+            // createdBy : localStorage.getItem("VirtualID") || null
         };
 
         this.contentService.addMoreStory(body).subscribe((response) => {
@@ -117,7 +118,7 @@ export class AddOrEditStoryComponent {
             language: this.editStoryForm.value.language,
             category: this.editStoryForm.value.category,
             status: "live",
-
+            // updatedBy : localStorage.getItem("VirtualID") || null
          
         };
         

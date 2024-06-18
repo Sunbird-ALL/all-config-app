@@ -10,6 +10,6 @@
         "GET_AUTHORING_CONFIG" :  "auth/getAllConfig",
         "CREATE_AUTHORING_CONFIG" :  "auth/createAuthConfig",
         "EDIT_AUTHORING_CONFIG" : "auth/createAuthConfig",
-        "GET_VIRTUAL_ID": "/v1/vid/generateVirtualID"
+        "GET_VIRTUAL_ID": "/api/virtualId/generateVirtualID"
     }
 }

@@ -89,7 +89,8 @@ export class AddWordSentencesComponent implements OnInit {
                     audioUrl: "",
                     text : this.addWordAndSentenceForm.value.text,
                 }
-            ]
+            ],
+            // createdBy : localStorage.getItem("VirtualID") || null
              
           };
           this.customerService.addMoreWords(body).subscribe(
@@ -161,7 +162,8 @@ export class AddWordSentencesComponent implements OnInit {
                     audioUrl: "",
                     text : this.editWordAndSentenceForm.value.contentText,
                 }
-            ]
+            ],
+            // updatedBy : localStorage.getItem("VirtualID") || null
              
           };
     
