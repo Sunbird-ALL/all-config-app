@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { ContentService } from 'src/app/configurable-appliance/service/content.service';
-import { MessageService, ConfirmationService, Message } from 'primeng/api';
+import { MessageService, ConfirmationService, Message, LazyLoadEvent } from 'primeng/api';
 import { AddWordSentencesComponent } from './add-word-sentences/add-word-sentences.component';
 import { ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api';
@@ -27,7 +27,14 @@ export class WordSentenceComponent implements AfterViewInit {
     contentTypeOptions: SelectItem[] = AppConfig.contentTypeListForFilter
     languageOptions:SelectItem[]=AppConfig.languages
     showDropdown = false;
-    
+    rowsPerPage: number = 10; 
+    totalRecords: number = 0;
+    first: number = 1; 
+    pageCount: number = 0; 
+    recordCount: number = 0;
+    cols: any[] = [];
+    rowsPerPageOptions: number[] = [10, 20, 30, 50, 100];
+
     constructor(
         private contentService: ContentService,
         public ref: DynamicDialogRef,
@@ -38,7 +45,7 @@ export class WordSentenceComponent implements AfterViewInit {
     ) {}
 
     ngOnInit() {
-        this.getStoriesList();
+        this.getStoriesList(this.first,this.rowsPerPage);
         this.route.queryParams.subscribe(params => {
             this.collectionId = params['collectionId'];
         });
@@ -59,27 +66,26 @@ export class WordSentenceComponent implements AfterViewInit {
         }
     }
 
-    getStoriesList() {
-        this.contentService.getWordSentenceList().subscribe(
+    onPageChange(event: LazyLoadEvent) {
+        const pageNumber = event.first / event.rows + 1;
+        const pageSize = event.rows || 10;
+        this.getStoriesList(pageNumber, pageSize);
+    }
+
+
+    getStoriesList(pageNumber: number, pageSize: number) {
+        this.loading = true;
+        this.contentService.getWordSentenceList(pageNumber, pageSize).subscribe(
             (response: any) => {
                 if (response.status === 'success') {
-                    this.wordAndSentenceData = response.data;
-                        
-                    // this.wordAndSentenceData.forEach((singleData: any) => {
-                    //     var data = singleData.data[0];
-                    //     for (var key in data) {
-                    //         if (data.hasOwnProperty(key)) {
-                    //             if (data[key].text) {
-                    //                 this.langData.push({
-                    //                     language: key,
-                    //                     text: data[key].text,
-                    //                     data: singleData,
-                    //                 });
-                    //             }
-                    //         }
-                    //     }
-                    // });
-                    // this.wordAndSentenceData = this.langData;
+                    if (!this.wordAndSentenceData) {
+                        this.wordAndSentenceData = response.data;
+                    }
+                    else if (response.data) {
+                        this.wordAndSentenceData = response.data;
+                    }
+                    this.pageCount = response.pageCount;
+                    this.recordCount = response.recordCount;
                     this.loading = false;
                 }
             },

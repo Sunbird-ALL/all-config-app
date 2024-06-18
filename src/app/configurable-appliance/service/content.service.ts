@@ -24,8 +24,8 @@ export class ContentService {
     return this.http.get(this.port +config.URLS.GET_STORIES_URL)
   }
 
-  getWordSentenceList(): Observable<Object> {
-    return this.http.get(this.port +config.URLS.GET_WORD_SENTENCE_LIST)
+  getWordSentenceList(page,limit): Observable<Object> {
+    return this.http.get(this.port +`${config.URLS.GET_WORD_SENTENCE_LIST}?page=${page}&limit=${limit}`)
   }
 
   addMoreStory(body: any): Observable<any> {
@@ -64,6 +64,6 @@ export class ContentService {
     return this.http.get(environment.configPort +config.URLS.GET_AUTHORING_CONFIG + `/${id}`,data)
   }
   getVirtualID(userName,password) : Observable <any> {
-    return this.http.get(environment.ANGULAR_APP_LEARNER_AI_APP_HOST +config.URLS.GET_VIRTUAL_ID + `?username=${userName}&password=${password}`)
+    return this.http.post(environment.ANGULAR_APP_LEARNER_AI_APP_HOST +config.URLS.GET_VIRTUAL_ID + `?username=${userName}`,null)
   }
 }
