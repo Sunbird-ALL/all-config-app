@@ -2,7 +2,7 @@
     <div class="col-12">
         <p-messages [(value)]="messages" [enableService]="false" [closable]="true"></p-messages>
         <div class="card">
-            <h5>Target List</h5>
+            <h5> {{ listType }}</h5>
             <p-table #dt [value]="targetList" dataKey="id" [rows]="10" [rowsPerPageOptions]="[10,100,200,300]"
                 [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true"
                 [globalFilterFields]="[
@@ -117,13 +117,13 @@
             </ng-template>
             <ng-template pTemplate="emptymessage">
                 <tr>
-                    <td colspan="8">No Target found.</td>
+                    <td colspan="8"> {{ noDataFound}}</td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="loadingbody">
                 <tr>
                     <td colspan="8">
-                        Loading Target ... Please wait.
+                       {{ loadingData }}
                     </td>
                 </tr>
             </ng-template>

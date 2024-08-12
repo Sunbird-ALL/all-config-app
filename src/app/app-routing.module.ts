@@ -24,8 +24,7 @@ import { AccessForbiddenComponent } from './configurable-appliance/components/ac
                     { path: 'story/list', loadChildren: () => import('./configurable-appliance/components/config-app/story-list/story.module').then(m => m.StoryModule) },
                     { path: 'word-sentence/list', loadChildren: () => import('./configurable-appliance/components/config-app/word-sentence/word-sentence.module').then(m => m.WordSentenceModule) },
                     {path : 'config',loadChildren : () => import('./configurable-appliance/components/config-app/global-api-host/global-api-host.module').then(m => m.GlobalConfigModule)},
-                    {path : 'target/list',loadChildren : () => import('./configurable-appliance/components/config-app/target-list/target.module').then(m => m.TargetModule)},
-                    {path : 'familarity/list',loadChildren : () => import('./configurable-appliance/components/config-app/familarity-list/familarity.module').then(m => m.FamilarityModule)}
+                    {path : 'list/:type',loadChildren : () => import('./configurable-appliance/components/config-app/target-list/target.module').then(m => m.TargetModule)},
                 ],
                 canActivate:[AuthGuard]
             },
