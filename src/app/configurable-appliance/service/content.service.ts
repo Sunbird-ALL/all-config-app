@@ -67,9 +67,9 @@ export class ContentService {
     return this.http.post(environment.ANGULAR_APP_LEARNER_AI_APP_HOST +config.URLS.GET_VIRTUAL_ID + `?username=${userName}`,null)
   }
   searchTarget(userId,language) : Observable <any> {
-    return this.http.get(environment.contentServicePort +config.URLS.GET_TARGETS + `/${userId}`+`?language=${language}`)
+    return this.http.get(this.port +config.URLS.GET_TARGETS + `/${userId}`+`?language=${language}`)
   }
   searchFamiliarty(userId,language) : Observable <any> {
-    return this.http.get(environment.contentServicePort +config.URLS.GET_FAMILIARITY + `/${userId}`+`?language=${language}`)
+    return this.http.get(this.port +config.URLS.GET_FAMILIARITY + `/${userId}`+`?language=${language}`)
   }
 }
