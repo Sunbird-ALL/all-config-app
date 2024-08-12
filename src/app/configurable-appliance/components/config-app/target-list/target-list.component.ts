@@ -36,8 +36,10 @@ export class TargetListComponent {
   }
 
   loadData() {
+    if(this.targetList.length > 0) {
     this.targetForm.reset();
     this.targetList = [];
+    }
     
     if (this.type === 'target') {
       this.listType = "Target List"
