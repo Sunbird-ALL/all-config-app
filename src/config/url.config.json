@@ -10,6 +10,8 @@
         "GET_AUTHORING_CONFIG" :  "auth/getAllConfig",
         "CREATE_AUTHORING_CONFIG" :  "auth/createAuthConfig",
         "EDIT_AUTHORING_CONFIG" : "auth/createAuthConfig",
-        "GET_VIRTUAL_ID": "/api/virtualId/generateVirtualID"
+        "GET_VIRTUAL_ID": "/api/virtualId/generateVirtualID",
+        "GET_TARGETS" : "/lais/scores/GetTargets/user",
+        "GET_FAMILIARITY" :"/lais/scores/GetFamiliarity/user"
     }
 }
