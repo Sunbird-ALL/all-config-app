@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfigAppRoutingModule } from './config-app-routing.module';
+import { FamilarityListComponent } from './familarity-list/familarity-list.component';
 
 @NgModule({
 	imports: [
@@ -8,6 +9,7 @@ import { ConfigAppRoutingModule } from './config-app-routing.module';
 		ConfigAppRoutingModule
 	],
 	declarations: [
-	]
+    FamilarityListComponent
+ ]
 })
 export class ConfigAppModule { }

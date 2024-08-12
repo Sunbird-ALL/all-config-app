@@ -23,7 +23,8 @@ import { AccessForbiddenComponent } from './configurable-appliance/components/ac
                     { path: 'global-config/list', loadChildren: () => import('./configurable-appliance/components/config-app/global-config/global-config.module').then(m => m.GlobalConfigModule) },
                     { path: 'story/list', loadChildren: () => import('./configurable-appliance/components/config-app/story-list/story.module').then(m => m.StoryModule) },
                     { path: 'word-sentence/list', loadChildren: () => import('./configurable-appliance/components/config-app/word-sentence/word-sentence.module').then(m => m.WordSentenceModule) },
-                    {path : 'config',loadChildren : () => import('./configurable-appliance/components/config-app/global-api-host/global-api-host.module').then(m => m.GlobalConfigModule)}
+                    {path : 'config',loadChildren : () => import('./configurable-appliance/components/config-app/global-api-host/global-api-host.module').then(m => m.GlobalConfigModule)},
+                    {path : 'list/:type',loadChildren : () => import('./configurable-appliance/components/config-app/target-list/target.module').then(m => m.TargetModule)},
                 ],
                 canActivate:[AuthGuard]
             },
