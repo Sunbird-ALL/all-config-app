@@ -36,7 +36,7 @@ export class TargetListComponent {
   }
 
   loadData() {
-    if(this.targetList.length > 0) {
+    if(this.targetList?.length > 0 || this.targetForm?.invalid) {
     this.targetForm.reset();
     this.targetList = [];
     }
@@ -65,6 +65,11 @@ export class TargetListComponent {
       this.messages = [
         { severity: 'error', summary: 'Add Required Data' }
       ];
+      
+      setTimeout(() => {
+        this.messages = [];
+      }, 2000);
+    
       return;
     }
 
@@ -75,6 +80,14 @@ export class TargetListComponent {
       this.contentService.searchTarget(userID, language).subscribe((response) => {
         this.targetList = response;
         this.loading = false;
+        if(response.length === 0) {
+          this.messages = [
+            { severity: 'error', summary: 'No Data Found' }
+          ];
+          setTimeout(() => {
+            this.messages = [];
+          }, 2000);
+        }
 
       }, (error: any) => {
         this.messages = [
@@ -85,6 +98,14 @@ export class TargetListComponent {
       this.contentService.searchFamiliarty(userID, language).subscribe((response) => {
         this.targetList = response;
         this.loading = false;
+        if(response.length === 0) {
+          this.messages = [
+            { severity: 'error', summary: 'No Data Found' }
+          ];
+          setTimeout(() => {
+            this.messages = [];
+          }, 2000);
+        }
 
       }, (error: any) => {
         this.messages = [
@@ -94,19 +115,12 @@ export class TargetListComponent {
     }
   }
 
-clearAllValues() {
-  this.contentService.searchTarget(null,null).subscribe((response) => {
-    this.targetList = response;
-    this.loading = false;
-    
-}, (error: any) => {
-  this.messages = [
-    { severity: 'error', summary: 'error'}
-  ]
-});
-}
+  onChangeLanguage(){
+    this.targetList = []
+  }
+
 clear(table : Table) {
-  this.clearAllValues();
+  this.onChangeLanguage();
   this.targetForm.reset();
   table.clear();
 }
