@@ -72,4 +72,15 @@ export class ContentService {
   searchFamiliarty(userId,language) : Observable <any> {
     return this.http.get(this.port +config.URLS.GET_FAMILIARITY + `/${userId}`+`?language=${language}`)
   }
+  getUdiseCode(): Observable<Object> {
+    return this.http.get(environment.adaptiveLearning +'/'+config.URLS.GET_UDISE_CODE)
+  }
+
+  addUdiseCode(body:any)  : Observable <any> {
+    return this.http.post(environment.adaptiveLearning +'/'+config.URLS.ADD_UDISE_CODE,body)
+  }
+
+  deleteUdiseCode(body:any) : Observable <any> {
+    return this.http.delete(environment.adaptiveLearning +'/'+ config.URLS.DELETE_UDISE_CODE+'/'+body)
+  }
 }

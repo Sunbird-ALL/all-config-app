@@ -28,6 +28,11 @@ import { AccessForbiddenComponent } from './configurable-appliance/components/ac
                 ],
                 canActivate:[AuthGuard]
             },
+            {
+                path: 'adaptive-learning/list',component: AppLayoutComponent,
+                loadChildren:() => import('./configurable-appliance/components/config-app/adaptive-learning/adaptive-learning.module').then(m => m.AdaptiveLearningModule),
+                canActivate:[AuthGuard]
+            }, 
             { path: 'notfound', component: NotfoundComponent },
             { path: 'forbidden', component: AccessForbiddenComponent },
             { path: '**', redirectTo: '/notfound' },

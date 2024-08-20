@@ -12,6 +12,9 @@
         "EDIT_AUTHORING_CONFIG" : "auth/createAuthConfig",
         "GET_VIRTUAL_ID": "api/virtualId/generateVirtualID",
         "GET_TARGETS" : "lais/scores/GetTargets/user",
-        "GET_FAMILIARITY" :"lais/scores/GetFamiliarity/user"
+        "GET_FAMILIARITY" :"lais/scores/GetFamiliarity/user",
+        "GET_UDISE_CODE": "api/adaptiveLearning/getAllUdise",
+        "ADD_UDISE_CODE": "api/adaptiveLearning/addSchoolUdise",
+        "DELETE_UDISE_CODE" : "api/adaptiveLearning/deleteByUdise"
     }
 }
