@@ -1,0 +1,63 @@
+<div *ngIf="true">
+    <form [formGroup]="addUdiseForm">
+      <div class="card p-fluid">
+        <p-messages
+          [(value)]="messages"
+          [enableService]="false"
+          [closable]="true"
+        ></p-messages>
+        <div class="field">
+          <label for="name">{{ "School Name" }} <span class="required">*</span></label>
+          <input
+            type="text"
+            name="school_name"
+            pInputText
+            id="school_name"
+            autofocus
+            placeholder="{{ 'Enter School Name' }}"
+            formControlName="school_name"
+          />
+        </div>
+        <div class="field">
+          <label for="udise_code">{{ "Udise Code" }} <span class="required">*</span></label>
+          <input
+            type="text"
+            name="udise_code"
+            pInputText
+            id="udise_code"
+            autofocus
+            placeholder="{{ 'Enter Udise Code' }}"
+            formControlName="udise_code"
+            minlength="11"
+            maxlength="11"
+            pattern="^\d+$"
+            (input)="filterNumbersOnly($event)"
+          />
+          <small style="margin-left: 550px; color: lightslategrey;">{{ addUdiseForm.get('udise_code').value?.length || 0 }}/11 characters</small>
+          
+        </div>
+        
+
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-4 p-xl-3 p-button-container">
+        <button
+          (click)="addUdiseCode()"
+          pButton
+          pRipple
+          label="{{ 'Submit' }}"
+          icon="pi pi-check"
+          class="p-button p-button-success"
+        ></button
+        >&nbsp;
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="{{ 'Cancel' }}"
+          icon="pi pi-times"
+          class="p-button p-button-danger"
+          (click)="cancel()"
+        ></button>
+      </div>
+    </form>
+  </div>

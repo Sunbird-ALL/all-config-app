@@ -17,7 +17,7 @@ export class AppMenuComponent implements OnInit {
             // {
             //     label: 'Enable Authoring',
             //     items: [
-            //         { label: 'Global Config', icon: 'pi pi-fw pi-box', routerLink: ['/content/galobal-config/list'] },
+            //         { label: 'Global Config', icon: 'pi pi-fw pi-box', routerLink: ['/content/global-config/list'] },
             //     ]
             // },
             {
@@ -30,12 +30,12 @@ export class AppMenuComponent implements OnInit {
 
                 ]
             },
-            // {
-            //     label: 'Word & Sentence List',
-            //     items: [
-            //         { label: 'Word & Sentence', icon: 'pi pi-fw pi-bars', routerLink: ['/content/word-sentence/list'] },
-            //     ]
-            // },
+            {
+                label: 'Adaptive Learning',
+                items: [
+                    { label: 'Udise Code', icon: 'pi pi-users', routerLink: ['/adaptive-learning/list'] },
+                ]
+            },
             
         ];
     }
