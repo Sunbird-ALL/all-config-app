@@ -21,5 +21,10 @@
  
   </form>
   <button pButton type="button" style="height: 45px;" pButton label="Submit" (click)="submitEnvironment()"></button>
- 
+  
+</div>
+<div *ngIf="loading" class="loading-overlay">
+  <div class="spinner-message-container">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
 </div>

@@ -15,7 +15,7 @@ export class GlobalApiHostComponent implements OnInit {
   environmentForm: FormGroup;
   devUrl: string = environment.devPort;
   prodUrl: string = environment.prodPort;
-
+  loading: boolean = false;
   constructor(
     private fb: FormBuilder,
     private ref: DynamicDialogRef,
@@ -30,12 +30,15 @@ export class GlobalApiHostComponent implements OnInit {
   }
 
   submitEnvironment() {
+    this.loading = true;
     if (this.environmentForm.valid) {
       const selectedEnvironment = this.environmentForm.value.environment;
       this.contentService.getApiHost(selectedEnvironment);
+      this.loading = false;
       this.ref.close(selectedEnvironment);
       this.router.navigate(['/content/story/list']);
     } else {
+      this.loading = false;
       this.markFormGroupTouched(this.environmentForm);
     }
   }

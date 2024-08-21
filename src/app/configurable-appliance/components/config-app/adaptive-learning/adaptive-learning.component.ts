@@ -31,7 +31,8 @@ constructor(
 }
 
 getUdiseCode(){
-  this.contentService.getUdiseCode().subscribe({
+    this.loading = true;
+   this.contentService.getUdiseCode().subscribe({
    next :  (response: any) => {
         if (response?.result?.length > 0) {
             this.adaptiveLists = response.result;
@@ -39,6 +40,7 @@ getUdiseCode(){
         }
     },
    error: (error) => {
+        this.loading = false;
         this.messages = [];
         this.messages = [
             {

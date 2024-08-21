@@ -20,8 +20,7 @@ import { SliderModule } from 'primeng/slider';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [TargetListComponent],
@@ -47,6 +46,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
     MessageModule,
     ReactiveFormsModule,
     FileUploadModule,
+    ProgressSpinnerModule,
 
   ],
   providers: [DialogService, DynamicDialogRef, MessageService],

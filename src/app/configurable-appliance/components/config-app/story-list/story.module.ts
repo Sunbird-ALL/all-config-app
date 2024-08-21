@@ -22,6 +22,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { AddSentenceForStoryComponent } from './add-sentence-for-story/add-sentence-for-story.component';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
     imports: [
@@ -44,6 +45,7 @@ import { FileUploadModule } from 'primeng/fileupload';
         ReactiveFormsModule,
         StoryRoutingModule,
         FileUploadModule,
+        ProgressSpinnerModule,
     ],
     declarations: [StoryList, AddOrEditStoryComponent, AddSentenceForStoryComponent],
     providers: [DialogService, DynamicDialogRef, MessageService],

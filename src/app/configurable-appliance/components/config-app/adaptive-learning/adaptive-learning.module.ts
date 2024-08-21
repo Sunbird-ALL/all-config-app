@@ -21,6 +21,7 @@ import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MessageService } from 'primeng/api';
 import { AddUdiseCodeComponent } from './add-udise-code/add-udise-code.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
     declarations: [AdaptiveLearningComponent, AddUdiseCodeComponent],
@@ -44,6 +45,7 @@ import { AddUdiseCodeComponent } from './add-udise-code/add-udise-code.component
         MessageModule,
         ReactiveFormsModule,
         FileUploadModule,
+        ProgressSpinnerModule
         
     ],
     providers: [DialogService, DynamicDialogRef, MessageService],

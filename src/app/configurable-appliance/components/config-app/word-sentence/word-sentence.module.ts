@@ -20,6 +20,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AddWordSentencesComponent } from './add-word-sentences/add-word-sentences.component';
 import { MessageService} from 'primeng/api';
 import { MessageModule } from 'primeng/message';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -40,6 +42,8 @@ import { MessageModule } from 'primeng/message';
         MessageModule,
         ReactiveFormsModule,
         WordSentenceRoutingModule,
+        ProgressSpinnerModule,
+
     ],
     declarations: [WordSentenceComponent, AddWordSentencesComponent],
     providers: [DialogService, DynamicDialogRef, MessageService],

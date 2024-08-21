@@ -14,7 +14,7 @@ import { GlobalApiHostComponent } from '../global-api-host/global-api-host.compo
 export class ConfigLoginComponent implements OnInit {
   loginForm: FormGroup;
   showPassword = false;
-
+  loading: boolean = false;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -33,14 +33,20 @@ export class ConfigLoginComponent implements OnInit {
 
   login(loginForm) {
     if (this.loginForm.valid) {
+      this.loading = true;
       const { username, password } = loginForm.value;
-      this.contentService.getVirtualID(username, password).subscribe(
-        (response: any) => {
+      this.contentService.getVirtualID(username, password).subscribe({
+       next : (response: any) => {
+          this.loading = false; 
           if (response?.result?.virtualID) {
-            this.checkVirtualID(Number(response?.result?.virtualID))
+            this.checkVirtualID(Number(response?.result?.virtualID));
           }
+        },
+        error :(error) => {
+          this.loading = false;
+          console.error('API call failed:', error);
         }
-      );
+    });
     }
   }
 

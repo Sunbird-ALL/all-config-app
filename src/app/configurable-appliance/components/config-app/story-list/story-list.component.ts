@@ -31,14 +31,16 @@ export class StoryList implements OnInit {
     }
 
     getStoriesList() {
-        this.contentService.getStoriesList().subscribe(
-            (response: any) => {
+        this.loading = true;
+        this.contentService.getStoriesList().subscribe({
+           next: (response: any) => {
                 if (response.status === 'success') {
                     this.storyList = response.data;
                     this.loading = false;
                 }
             },
-            (error) => {
+          error: (error) => {
+                this.loading = false;
                 this.messages = [];
                 this.messages = [
                     {
@@ -47,7 +49,7 @@ export class StoryList implements OnInit {
                     },
                 ];
             }
-        );
+    });
     }
 
     addMoreStory() {
@@ -143,7 +145,6 @@ export class StoryList implements OnInit {
                 this.contentService
                 .deleteCollection(data ?._id)
                 .subscribe((e) => {
-                    // this.storyList = this.storyList.filter(story => story._id !== data?._id);
                     data.deleted = true;
                 });
                 this.messages = [];
