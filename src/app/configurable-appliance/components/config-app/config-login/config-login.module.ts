@@ -7,6 +7,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { DialogService } from 'primeng/dynamicdialog';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
     declarations: [ConfigLoginComponent],
@@ -18,7 +19,7 @@ import { DialogService } from 'primeng/dynamicdialog';
         InputTextModule,
         ButtonModule,
         DialogModule,
-        
+        ProgressSpinnerModule,
     ],
     providers: [DialogService],
 })

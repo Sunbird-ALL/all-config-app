@@ -75,9 +75,10 @@ export class TargetListComponent {
 
     const userID = this.targetForm.value.userID;
     const language = this.targetForm.value.language;
-
+    this.loading = true;
     if (this.type === 'target') {
-      this.contentService.searchTarget(userID, language).subscribe((response) => {
+      this.contentService.searchTarget(userID, language).subscribe({
+        next:(response) => {
         this.targetList = response;
         this.loading = false;
         if(response.length === 0) {
@@ -89,13 +90,15 @@ export class TargetListComponent {
           }, 2000);
         }
 
-      }, (error: any) => {
+      }, error: (error: any) => {
+        this.loading = false;
         this.messages = [
           { severity: 'error', summary: 'error' }
         ]
-      });
+      }});
     } else if (this.type === 'familarity') {
-      this.contentService.searchFamiliarty(userID, language).subscribe((response) => {
+      this.contentService.searchFamiliarty(userID, language).subscribe({
+       next : (response) => {
         this.targetList = response;
         this.loading = false;
         if(response.length === 0) {
@@ -107,11 +110,12 @@ export class TargetListComponent {
           }, 2000);
         }
 
-      }, (error: any) => {
+      },error: (error: any) => {
+        this.loading = false;
         this.messages = [
           { severity: 'error', summary: 'error' }
         ]
-      });
+    }});
     }
   }
 

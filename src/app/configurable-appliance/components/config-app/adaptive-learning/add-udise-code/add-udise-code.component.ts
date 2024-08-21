@@ -42,18 +42,21 @@ export class AddUdiseCodeComponent {
 
 
   addUdiseCode() {
-    if(this.addUdiseForm.controls['udise_code'].value.length < 11){
-      this.messages = [
-        { severity: 'error', summary: 'UDISE Code Must be length of 11' }
-      ];
+    if (this.addUdiseForm?.invalid) {
+      const udiseCode = this.addUdiseForm?.controls['udise_code']?.value;
+      
+      if (udiseCode && udiseCode?.length < 11) {
+        this.messages = [
+          { severity: 'error', summary: 'UDISE Code Must be length of 11' }
+        ];
+      } else {
+        this.messages = [
+          { severity: 'error', summary: 'Add Required Data' }
+        ];
+      }
       return;
     }
-    if (this.addUdiseForm.invalid) {
-      this.messages = [
-        { severity: 'error', summary: 'Add Required Data' }
-      ];
-      return;
-    }
+    
 
     const body = {
       school_name: this.addUdiseForm.value.school_name,

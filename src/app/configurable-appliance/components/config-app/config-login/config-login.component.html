@@ -27,4 +27,9 @@
 
     <button type="submit" style="height: 45px;" pButton label="Login"></button>
   </form>
+  <div *ngIf="loading" class="loading-overlay">
+    <div class="spinner-message-container">
+      <p-progressSpinner></p-progressSpinner>
+    </div>
+  </div>
 </div>

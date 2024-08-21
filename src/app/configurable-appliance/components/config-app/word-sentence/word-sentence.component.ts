@@ -18,7 +18,7 @@ export class WordSentenceComponent implements AfterViewInit {
     editDialog: boolean;
     wordAndSentenceData: any[] = [];
     langData: any[] = [];
-    loading: boolean = true;
+    loading: boolean = false;
     messages: Message[] = [];
     collectionId: string;
     @ViewChild('dt2') dataTable: Table;
@@ -75,8 +75,8 @@ export class WordSentenceComponent implements AfterViewInit {
 
     getStoriesList(pageNumber: number, pageSize: number) {
         this.loading = true;
-        this.contentService.getWordSentenceList(pageNumber, pageSize).subscribe(
-            (response: any) => {
+        this.contentService.getWordSentenceList(pageNumber, pageSize).subscribe({
+          next: (response: any) => {
                 if (response.status === 'success') {
                     if (!this.wordAndSentenceData) {
                         this.wordAndSentenceData = response.data;
@@ -89,7 +89,8 @@ export class WordSentenceComponent implements AfterViewInit {
                     this.loading = false;
                 }
             },
-            (error) => {
+           error: (error) => {
+                this.loading = false;
                 this.messages = [];
                 this.messages = [
                     {
@@ -98,7 +99,7 @@ export class WordSentenceComponent implements AfterViewInit {
                     },
                 ];
             }
-        );
+    });
     }
 
     deleteWorkAndSentence(data) {
@@ -110,7 +111,6 @@ export class WordSentenceComponent implements AfterViewInit {
                 this.contentService
                     .deleteWordAndSentence(data?._id)
                     .subscribe((e) => {
-                        // this.wordAndSentenceData = this.wordAndSentenceData.filter(story => story._id !== data?._id);
                         data.deleted = true;
                     });
                 this.messages = [];
@@ -137,7 +137,6 @@ export class WordSentenceComponent implements AfterViewInit {
 
     hideDialog() {
         this.editDialog = false;
-        // location.reload();
     }
 
     addMoreWords() {
@@ -167,6 +166,7 @@ export class WordSentenceComponent implements AfterViewInit {
     }
 
       editContent(wordAndSentenceData) {
+      this.loading = true;
         if (this.editingWordAndSentence) {
             this.editingWordAndSentence.isEditing = false;
             this.editingWordAndSentence = null;
@@ -189,19 +189,21 @@ export class WordSentenceComponent implements AfterViewInit {
                  
               };
         
-        this.contentService.editMoreWords(body,wordAndSentenceData._id).subscribe(
-            (response) => {
+        this.contentService.editMoreWords(body,wordAndSentenceData._id).subscribe({
+          next: (response) => {
                 if(response.status === "success"){
+                   this.loading = false; 
                     wordAndSentenceData.isEditing = false;
                     this.editingWordAndSentence = null;
                 }
             },
-            (error: any) => {
+           error: (error: any) => {
+                this.loading = false; 
                 this.messages = [
                     { severity: 'error', summary: 'Please fill all fields' }
                 ];
             }
-        );
+      });
     }
   
     clear(table: Table) {

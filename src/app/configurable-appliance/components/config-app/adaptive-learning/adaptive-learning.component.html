@@ -116,5 +116,10 @@
             </p-table>
         </div>
     </div>
+    <div *ngIf="loading" class="loading-overlay">
+        <div class="spinner-message-container">
+          <p-progressSpinner></p-progressSpinner>
+        </div>
+      </div>
 </div>
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
