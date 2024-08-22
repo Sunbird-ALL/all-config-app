@@ -65,7 +65,11 @@ export class AddUdiseCodeComponent {
 
     this.contentService.addUdiseCode(body).subscribe({
       next: (response) => {
-        if (response.result) {
+        if(response?.result === "udise_code is already exists"){
+          this.messages = [
+            { severity: 'error', summary: 'UDISE Code Already exists' }
+          ];
+        }else if (response.result) {
           this.ref.close(response.result);
         }
 
