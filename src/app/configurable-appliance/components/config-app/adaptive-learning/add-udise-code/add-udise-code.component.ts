@@ -30,7 +30,7 @@ export class AddUdiseCodeComponent {
 
   initializeAddForm() {
     this.addUdiseForm = this.formBuilder.group({
-      school_name: ['', Validators.required],
+      school_name: [''],
       udise_code: [
         '', [Validators.required,
         Validators.minLength(11),
