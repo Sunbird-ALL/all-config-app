@@ -93,7 +93,7 @@
                         {{ udise.udise_code }}
                     </td>
                     <td>
-                        {{ udise.school_name }}
+                        {{ udise.school_name ? udise.school_name : "-" }}
                     </td>
                     <td style="text-align: center; z-index: 999;">
                         <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2" (click)="deleteUdise(udise)"></button>
